@@ -111,8 +111,13 @@ type
   
 begin
   
-  HTML.Pack('Doc source', 'Все лабораторные работы.html');
-  foreach var dir in EnumerateDirectories('Doc source') do
-    HTML.Pack(dir, Path.GetFileName(dir)+'.html');
+  foreach var lang in |'ru', 'uk'| do
+  begin
+    
+    HTML.Pack($'Doc source ({lang})', $'Все лабораторные работы ({lang}).html');
+    foreach var dir in EnumerateDirectories($'Doc source ({lang})') do
+      HTML.Pack(dir, $'{Path.GetFileName(dir)} ({lang}).html');
+    
+  end;
   
 end.
