@@ -31,12 +31,10 @@ int main()
     // Умножение менее затратное чем деление, поэтому лучше вычислять как (a_d2 * x) чем как (ax / 2)
     auto ax_d2 = a_d2 * x;
 
-    auto temp1 = sin(ax_d2);
-    auto temp2 = log(sin(ax_d2));
-
     auto t1 = (log(y / x) + ax / y) / (b * b);
     auto t2 = x / a * tan(ax_d2)   +   2 / (a * a) * log(sin(ax_d2));
 
     wprintf(L"t1 = %lf\n", t1);
     wprintf(L"t2 = %lf\n", t2);
+
 }
