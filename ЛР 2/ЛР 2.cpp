@@ -43,9 +43,9 @@ int main()
 *
 * Офисные пакеты
 * Наименование	Производитель	Количество сост.частей	Цена ($)
-* Office	Microsoft	4	870
-* SmartSute	Lotus	5	1020
-* StarOffice	Sun	4	9
+  Office Microsoft 4 870
+  SmartSute Lotus 5 1020
+  StarOffice Sun 4 9
 * Примечание: возможно бесплатно получить продукт StarOffice через Internet
 *
 */
