@@ -29,7 +29,7 @@ int main()
     _setmode(_fileno(stderr), _O_U16TEXT);
 
     int oper_code, command_chain, data_chain, byte_count;
-    
+
     wprintf(L"Код операции (0..31): ");
     wscanf_s(L"%d", &oper_code);
 
@@ -45,10 +45,10 @@ int main()
     wscanf_s(L"%d", &byte_count);
 
     uint16_t encoded{};
-    WriteBits(encoded, byte_count,       0, 9);
-    WriteBits(encoded, data_chain,       9, 1);
-    WriteBits(encoded, command_chain,   10, 1);
-    WriteBits(encoded, oper_code,       11, 5);
+    WriteBits(encoded, byte_count, 0, 9);
+    WriteBits(encoded, data_chain, 9, 1);
+    WriteBits(encoded, command_chain, 10, 1);
+    WriteBits(encoded, oper_code, 11, 5);
     wprintf(L"В зашифрованном виде: 0x%X\n", encoded);
 
     if (RE_READ_ENCODED)
@@ -59,9 +59,9 @@ int main()
         encoded = temp_encoded;
     }
 
-    wprintf(L"Код операции: %d\n",                      ReadBits(encoded, 11, 5));
-    wprintf(L"Признак цепочки команд: %d\n",            ReadBits(encoded, 10, 1));
-    wprintf(L"Признак цепочки данных: %d\n",            ReadBits(encoded,  9, 1));
-    wprintf(L"Количество байтов для передачи: %d\n",    ReadBits(encoded,  0, 9));
+    wprintf(L"Код операции: %d\n", ReadBits(encoded, 11, 5));
+    wprintf(L"Признак цепочки команд: %d\n", ReadBits(encoded, 10, 1));
+    wprintf(L"Признак цепочки данных: %d\n", ReadBits(encoded, 9, 1));
+    wprintf(L"Количество байтов для передачи: %d\n", ReadBits(encoded, 0, 9));
 
 }
