@@ -6,9 +6,9 @@
 int main()
 {
     // Переключение кодировки вывода
-    _setmode(_fileno(stdout), _O_U16TEXT);
-    _setmode(_fileno(stdin ), _O_U16TEXT);
-    _setmode(_fileno(stderr), _O_U16TEXT);
+    if (_setmode(_fileno(stdout), _O_U16TEXT) == -1) return -1;
+    if (_setmode(_fileno(stdin ), _O_U16TEXT) == -1) return -1;
+    if (_setmode(_fileno(stderr), _O_U16TEXT) == -1) return -1;
 
     wchar_t name1[13], name2[13], name3[13];
     wchar_t manuf1[14], manuf2[14], manuf3[14];
