@@ -26,27 +26,21 @@ int main()
         wcout << arr[i] << ' ';
     wcout << endl;
 
-    int chain[chain_len];
-    copy(arr, arr+10, chain);
-
     int sum = 0;
     for (auto i = 0; i < chain_len; ++i)
-        sum += chain[i];
+        sum += arr[i];
 
     int max_sum = sum;
     int max_sum_ind = chain_len - 1;
     for (auto i = chain_len; i < arr_len; ++i)
     {
-        auto chain_ind = i % chain_len;
-        sum -= chain[chain_ind];
-        auto val = arr[i];
-        sum += val;
+        sum -= arr[i - chain_len];
+        sum += arr[i];
         if (sum > max_sum)
         {
             max_sum = sum;
             max_sum_ind = i;
         }
-        chain[chain_ind] = val;
     }
 
     wcout << L"Участок с максимальной суммой:" << endl;
