@@ -45,6 +45,27 @@ public:
 		, cost_in_dollars(d.cost_in_dollars)
 	{}
 
+	bool operator==(const ProductData& other) {
+		if (this->name != other.name) return false;
+		if (this->producer != other.producer) return false;
+		if (this->part_count != other.part_count) return false;
+		if (this->cost_in_dollars != other.cost_in_dollars) return false;
+		return true;
+	}
+
+	auto& get_name() {
+		return name;
+	}
+	auto& get_producer() {
+		return producer;
+	}
+	auto& get_part_count() {
+		return part_count;
+	}
+	auto& get_cost_in_dollars() {
+		return cost_in_dollars;
+	}
+
 	void Serialize(BinaryWriter& bw) {
 		bw << name << producer << part_count << cost_in_dollars;
 	}

@@ -200,7 +200,7 @@ public:
 		auto len = Read7bit<int>();
 
 		std::wstring res(len, L'\0');
-		str.read((char*)&res[0], len*sizeof(wchar_t));
+		str.read((char*)&res[0], (std::streamsize)len*sizeof(wchar_t));
 
 		return res;
 	}

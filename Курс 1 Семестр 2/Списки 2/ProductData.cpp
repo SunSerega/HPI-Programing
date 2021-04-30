@@ -55,10 +55,10 @@ wostream& operator<<(wostream& os, const LList<ProductData>& data)
 	for (auto& pd : data)
 	{
 		os << L"║ "
-			<< setw(w[0]) << pd.name << L" ║ "
-			<< setw(w[1]) << pd.producer << L" ║ "
-			<< setw(w[2]) << pd.part_count << L" ║ "
-			<< setw(w[3]) << pd.cost_in_dollars << L" ║"
+			<< setw(w[0]) << left << pd.name << L" ║ "
+			<< setw(w[1]) << left << pd.producer << L" ║ "
+			<< setw(w[2]) << right << pd.part_count << L" ║ "
+			<< setw(w[3]) << right << pd.cost_in_dollars << L" ║"
 		<< endl;
 	}
 
