@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryFiles.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="LList.h" />
     <ClInclude Include="ProductData.h" />
     <ClInclude Include="Console.h" />

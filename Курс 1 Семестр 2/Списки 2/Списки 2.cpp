@@ -5,12 +5,13 @@
 #include <functional>
 
 #include "LList.h"
+#include "List.h"
 #include "ProductData.h"
 #include "Console.h"
 
 using namespace std;
 
-void Header(LList<ProductData>& l) {
+void Header(List<ProductData>& l) {
 	Console::Clear();
 	wcout << l;
 }
@@ -19,7 +20,7 @@ void Header(LList<ProductData>& l) {
 
 class Menu {
 private:
-	LList<ProductData>& l;
+	List<ProductData>& l;
 	wstring name;
 	bool (*proc)(bool) = nullptr;
 	LList<Menu> sub_menus{};
@@ -38,14 +39,14 @@ private:
 public:
 
 	template <class ... Ts>
-	Menu(LList<ProductData>& l, wstring name, Ts&&... sub_menus)
+	Menu(List<ProductData>& l, wstring name, Ts&&... sub_menus)
 		: l(l), name(name)
 	{
 		AddSubMenus(forward<Ts>(sub_menus)...);
 	}
 
 	template <class ... Ts>
-	Menu(LList<ProductData>& l, wstring name, bool (*proc)(bool), Ts&&... sub_menus)
+	Menu(List<ProductData>& l, wstring name, bool (*proc)(bool), Ts&&... sub_menus)
 		: l(l), name(name), proc(proc)
 	{
 		AddSubMenus(forward<Ts>(sub_menus)...);
@@ -118,7 +119,7 @@ public:
 
 #pragma endregion
 
-auto l = LList<ProductData>();
+auto l = List<ProductData>();
 
 bool ReadElements(bool) {
 	auto ind = Console::Read<int>(L"Введите позицию вставки или -1: ");
@@ -173,7 +174,7 @@ bool LoadElements(bool) {
 	return false;
 }
 
-LList<ProductData> sub_l;
+List<ProductData> sub_l;
 bool CopyList(bool first) {
 	if (first) {
 		sub_l.Clear();

@@ -30,7 +30,7 @@ void WriteTableHeader(wostream& os, const wstring& title, int len) {
 	os << wstring(len1, L'═') << L' ' << title << L' ' << wstring(len2, L'═');
 }
 
-wostream& operator<<(wostream& os, const LList<ProductData>& data)
+wostream& operator<<(wostream& os, const List<ProductData>& data)
 {
 	const wstring headers[]{ L"Name", L"Producer", L"Part count", L"Cost ($)" };
 

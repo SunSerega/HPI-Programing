@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "LList.h"
+#include "List.h"
 #include "BinaryFiles.h"
 
 class ProductData
@@ -12,7 +12,7 @@ private:
 	int part_count;
 	int cost_in_dollars;
 
-	friend std::wostream& operator<<(std::wostream& os, const LList<ProductData>& data);
+	friend std::wostream& operator<<(std::wostream& os, const List<ProductData>& data);
 	friend std::wistream& operator>>(std::wistream& is, ProductData& data);
 
 public:
@@ -44,6 +44,14 @@ public:
 		, part_count(d.part_count)
 		, cost_in_dollars(d.cost_in_dollars)
 	{}
+
+	auto& operator=(ProductData&& d) {
+		name = std::move(d.name);
+		producer = std::move(d.producer);
+		part_count = d.part_count;
+		cost_in_dollars = d.cost_in_dollars;
+		return *this;
+	}
 
 	bool operator==(const ProductData& other) {
 		if (this->name != other.name) return false;
@@ -78,7 +86,7 @@ public:
 
 };
 
-std::wostream& operator<<(std::wostream& os, const LList<ProductData>& data);
+std::wostream& operator<<(std::wostream& os, const List<ProductData>& data);
 std::wistream& operator>>(std::wistream& is, ProductData& data);
 
 
