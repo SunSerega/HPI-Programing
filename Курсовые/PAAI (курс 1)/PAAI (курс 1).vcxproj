@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{cdfaebef-c160-4311-9757-eea5a9ecd407}</ProjectGuid>
-    <RootNamespace>Списки2</RootNamespace>
+    <ProjectGuid>{6f917bb5-1878-466b-bf77-3417b4b68d57}</ProjectGuid>
+    <RootNamespace>PAAIкурс1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -86,11 +86,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -100,11 +100,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -114,12 +114,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -128,30 +129,46 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Console.cpp" />
-    <ClCompile Include="ProductData.cpp" />
-    <ClCompile Include="Списки 2.cpp" />
+    <ClCompile Include="glad\src\gl.c" />
+    <ClCompile Include="glad\src\wgl.c" />
+    <ClCompile Include="MainVisualLoop.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="OpenGLUtils.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeRenderer.cpp" />
+    <ClCompile Include="WindowUtils.cpp" />
+    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="WindowUtils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryFiles.h" />
-    <ClInclude Include="LList.h" />
-    <ClInclude Include="ProductData.h" />
-    <ClInclude Include="Console.h" />
+    <ClInclude Include="glad\include\glad\gl.h" />
+    <ClInclude Include="glad\include\glad\wgl.h" />
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="OpenGLUtils.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="SnakeRenderer.h" />
+    <ClInclude Include="Vec.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="0.dat" />
-    <None Include="temp.db" />
+    <None Include="Empty.frag" />
+    <None Include="SnakeField.frag" />
+    <None Include="SnakeField.geom" />
+    <None Include="SnakeField.vert" />
+    <None Include="SnakeFieldBackground.geom" />
+    <None Include="Empty.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

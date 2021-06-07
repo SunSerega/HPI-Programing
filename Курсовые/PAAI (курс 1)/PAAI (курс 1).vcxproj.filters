@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="glad">
+      <UniqueIdentifier>{8cd72dc8-055d-4b2c-bd53-84fe8ff9a12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{9640ead5-7dfa-4cfb-8b80-dad3780814e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{c427c4bb-c5bd-458e-9a35-d31e500a0e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\SnakeBody">
+      <UniqueIdentifier>{33753bdd-c4a2-4413-b3f7-c0c026a5ab02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Snake">
+      <UniqueIdentifier>{f909a7e7-fa3a-45d8-a4da-4014380a71ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainWindowBackend">
+      <UniqueIdentifier>{acccf961-cc85-465e-94b8-ec6ea372e37a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainVisualLoop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad\src\gl.c">
+      <Filter>glad</Filter>
+    </ClCompile>
+    <ClCompile Include="glad\src\wgl.c">
+      <Filter>glad</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowUtils.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Snake.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeRenderer.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>MainWindowBackend</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLUtils.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderProgram.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="glad\include\glad\gl.h">
+      <Filter>glad</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\include\glad\wgl.h">
+      <Filter>glad</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeRenderer.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>MainWindowBackend</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLUtils.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowUtils.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderProgram.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SnakeField.frag">
+      <Filter>Shaders\SnakeBody</Filter>
+    </None>
+    <None Include="SnakeField.geom">
+      <Filter>Shaders\SnakeBody</Filter>
+    </None>
+    <None Include="SnakeField.vert">
+      <Filter>Shaders\SnakeBody</Filter>
+    </None>
+    <None Include="SnakeFieldBackground.geom">
+      <Filter>Shaders\SnakeBody</Filter>
+    </None>
+    <None Include="Empty.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Empty.frag">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

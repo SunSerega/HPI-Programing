@@ -46,5 +46,8 @@
     <None Include="temp.db">
       <Filter>Misc</Filter>
     </None>
+    <None Include="0.dat">
+      <Filter>Misc</Filter>
+    </None>
   </ItemGroup>
 </Project>

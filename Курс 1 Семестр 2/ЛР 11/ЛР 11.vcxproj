@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{cdfaebef-c160-4311-9757-eea5a9ecd407}</ProjectGuid>
-    <RootNamespace>Списки2</RootNamespace>
+    <ProjectGuid>{9f77c573-8f5e-4dff-8042-12aaddf40174}</ProjectGuid>
+    <RootNamespace>ЛР11</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,19 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Console.cpp" />
-    <ClCompile Include="ProductData.cpp" />
-    <ClCompile Include="Списки 2.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BinaryFiles.h" />
-    <ClInclude Include="LList.h" />
-    <ClInclude Include="ProductData.h" />
-    <ClInclude Include="Console.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="0.dat" />
-    <None Include="temp.db" />
+    <ClCompile Include="ЛР 11.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

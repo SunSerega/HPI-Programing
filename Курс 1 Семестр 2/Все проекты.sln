@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Рекурсивная сортировка вставками", "Рекурсивная сортировка вставками\Рекурсивная сортировка вставками.vcxproj", "{46744D02-9A02-4CDD-8BCC-ACE812870F92}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Списки", "Списки\Списки.vcxproj", "{0767DB3C-DE33-4C01-A83A-8432E744DCE1}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ЛР 1", "ЛР 1\ЛР 1.vcxproj", "{69BB7B3F-DD4A-4EC7-9936-B39035DA4CE6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ЛР 2", "ЛР 2\ЛР 2.vcxproj", "{86EC7993-2643-486C-A66F-71D48D01185D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Списки 2", "Списки 2\Списки 2.vcxproj", "{CDFAEBEF-C160-4311-9757-EEA5A9ECD407}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ЛР 11", "ЛР 11\ЛР 11.vcxproj", "{9F77C573-8F5E-4DFF-8042-12AADDF40174}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,14 +29,6 @@ Global
 		{46744D02-9A02-4CDD-8BCC-ACE812870F92}.Release|x64.Build.0 = Release|x64
 		{46744D02-9A02-4CDD-8BCC-ACE812870F92}.Release|x86.ActiveCfg = Release|Win32
 		{46744D02-9A02-4CDD-8BCC-ACE812870F92}.Release|x86.Build.0 = Release|Win32
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Debug|x64.ActiveCfg = Debug|x64
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Debug|x64.Build.0 = Debug|x64
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Debug|x86.ActiveCfg = Debug|Win32
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Debug|x86.Build.0 = Debug|Win32
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Release|x64.ActiveCfg = Release|x64
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Release|x64.Build.0 = Release|x64
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Release|x86.ActiveCfg = Release|Win32
-		{0767DB3C-DE33-4C01-A83A-8432E744DCE1}.Release|x86.Build.0 = Release|Win32
 		{69BB7B3F-DD4A-4EC7-9936-B39035DA4CE6}.Debug|x64.ActiveCfg = Debug|x64
 		{69BB7B3F-DD4A-4EC7-9936-B39035DA4CE6}.Debug|x64.Build.0 = Debug|x64
 		{69BB7B3F-DD4A-4EC7-9936-B39035DA4CE6}.Debug|x86.ActiveCfg = Debug|Win32
@@ -61,6 +53,14 @@ Global
 		{CDFAEBEF-C160-4311-9757-EEA5A9ECD407}.Release|x64.Build.0 = Release|x64
 		{CDFAEBEF-C160-4311-9757-EEA5A9ECD407}.Release|x86.ActiveCfg = Release|Win32
 		{CDFAEBEF-C160-4311-9757-EEA5A9ECD407}.Release|x86.Build.0 = Release|Win32
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Debug|x64.ActiveCfg = Debug|x64
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Debug|x64.Build.0 = Debug|x64
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Debug|x86.ActiveCfg = Debug|Win32
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Debug|x86.Build.0 = Debug|Win32
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Release|x64.ActiveCfg = Release|x64
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Release|x64.Build.0 = Release|x64
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Release|x86.ActiveCfg = Release|Win32
+		{9F77C573-8F5E-4DFF-8042-12AADDF40174}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
