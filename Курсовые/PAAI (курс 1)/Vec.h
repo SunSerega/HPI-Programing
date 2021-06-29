@@ -4,17 +4,114 @@ template <size_t c, class T>
 struct Vec {
 	T val[c];
 
-	Vec operator-(const Vec& other) const {
-		Vec res{};
+#pragma region Add
+
+	template <class T2>
+	auto operator+(T2 scalar) {
+		Vec<c, decltype(std::declval<T>() + std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
-			res[i] = this->val[i] - other.val[i];
+			res.val[i] = this->val[i] + scalar;
+		return res;
+	}
+	template <class T2>
+	auto operator+(Vec<c, T2> v) {
+		Vec<c, decltype(std::declval<T>() + std::declval<T2>())> res;
+		for (int i = 0; i < c; ++i)
+			res.val[i] = this->val[i] + v[i];
+		return res;
+	}
+	template <class T2>
+	Vec operator+=(T2 v) {
+		Vec res = *this + v;
+		*this = res;
 		return res;
 	}
 
-	Vec operator+=(const Vec& offset) {
+#pragma endregion
+
+#pragma region Sub
+
+	template <class T2>
+	auto operator-(T2 scalar) {
+		Vec<c, decltype(std::declval<T>() - std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
-			this->val[i] += offset.val[i];
-		return *this;
+			res.val[i] = this->val[i] - scalar;
+		return res;
+	}
+	template <class T2>
+	auto operator-(Vec<c, T2> v) {
+		Vec<c, decltype(std::declval<T>() - std::declval<T2>())> res;
+		for (int i = 0; i < c; ++i)
+			res.val[i] = this->val[i] - v[i];
+		return res;
+	}
+	template <class T2>
+	Vec operator-=(T2 v) {
+		Vec res = *this - v;
+		*this = res;
+		return res;
+	}
+
+#pragma endregion
+
+#pragma region Mul
+
+	template <class T2>
+	auto operator*(T2 scalar) {
+		Vec<c, decltype(std::declval<T>() * std::declval<T2>())> res;
+		for (int i = 0; i < c; ++i)
+			res.val[i] = this->val[i] * scalar;
+		return res;
+	}
+	template <class T2>
+	auto operator*(Vec<c, T2> v) {
+		Vec<c, decltype(std::declval<T>() * std::declval<T2>())> res;
+		for (int i = 0; i < c; ++i)
+			res.val[i] = this->val[i] * v[i];
+		return res;
+	}
+	template <class T2>
+	Vec operator*=(T2 v) {
+		Vec res = *this * v;
+		*this = res;
+		return res;
+	}
+
+#pragma endregion
+
+#pragma region Div
+
+	template <class T2>
+	auto operator/(T2 scalar) {
+		Vec<c, decltype(std::declval<T>() / std::declval<T2>())> res;
+		for (int i = 0; i < c; ++i)
+			res.val[i] = this->val[i] / scalar;
+		return res;
+	}
+	template <class T2>
+	auto operator/(Vec<c, T2> v) {
+		Vec<c, decltype(std::declval<T>() / std::declval<T2>())> res;
+		for (int i = 0; i < c; ++i)
+			res.val[i] = this->val[i] / v[i];
+		return res;
+	}
+	template <class T2>
+	Vec operator/=(T2 v) {
+		Vec res = *this / v;
+		*this = res;
+		return res;
+	}
+
+#pragma endregion
+
+#pragma region Misc
+
+	template <class T2>
+	operator Vec<c, T2>() {
+		Vec<c, T2> res;
+		for (int i = 0; i < c; ++i)
+			res[i] = val[i];
+		return res;
 	}
 
 	bool operator==(const Vec& other) const {
@@ -30,6 +127,21 @@ struct Vec {
 	const T& operator[] (size_t ind) const {
 		return val[ind];
 	}
+
+	T get_min() {
+		T res = val[0];
+		for (int i = 1; i < c; ++i)
+			if (val[i] < res) res = val[i];
+		return res;
+	}
+	T get_max() {
+		T res = val[0];
+		for (int i = 1; i < c; ++i)
+			if (val[i] > res) res = val[i];
+		return res;
+	}
+
+#pragma endregion
 
 };
 

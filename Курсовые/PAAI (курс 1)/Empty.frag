@@ -1,6 +1,7 @@
 #version 460 core
 
-in vec3 color;
+//ToDo check out the binary
+noperspective in vec3 color;
 out vec3 out_color;
 
 /**

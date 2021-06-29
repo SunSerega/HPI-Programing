@@ -1,6 +1,6 @@
 #version 460 core
 
-uniform double cell_size;
+uniform dvec2 cell_size;
 
 layout(points) in;
 in CellData {
@@ -10,9 +10,7 @@ in CellData {
 } inp[];
 
 layout(triangle_strip, max_vertices = 5) out;
-out CellVertex {
-	vec3 color;
-} otp;
+out vec3 color;
 
 /**
 layout(binding = 1) buffer temp_otp {
@@ -42,10 +40,10 @@ vec2 RotatePoint(vec2 p, int dir0) {
 
 
 void SingleCell(dvec2 pos) {
-	SendVertex( pos.x+0*cell_size, pos.y+0*cell_size );
-	SendVertex( pos.x+0*cell_size, pos.y+1*cell_size );
-	SendVertex( pos.x+1*cell_size, pos.y+0*cell_size );
-	SendVertex( pos.x+1*cell_size, pos.y+1*cell_size );
+	SendVertex( pos + dvec2(0, 0) * cell_size );
+	SendVertex( pos + dvec2(0, 1) * cell_size );
+	SendVertex( pos + dvec2(1, 0) * cell_size );
+	SendVertex( pos + dvec2(1, 1) * cell_size );
 	EndPrimitive();
 }
 
@@ -93,7 +91,7 @@ void SnakeBody(dvec2 pos, int dir0, int dir_change) {
 }
 
 void main() {
-	otp.color = inp[0].color;
+	color = inp[0].color;
 	dvec2 pos = inp[0].pos;
 	int dir[2] = inp[0].dir;
 	

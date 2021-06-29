@@ -9,10 +9,11 @@ struct SnakeFieldProgram : public ShaderProgram {
 	};
 
 	enum {
-		attribute_pos,
+		attribute_prev_pos,
+		attribute_curr_pos,
+		attribute_next_pos,
 		attribute_color,
-		attribute_dir0,
-		attribute_dir1,
+		attribute_dir_bits,
 		ATTRIBUTE_COUNT
 	};
 
@@ -20,7 +21,7 @@ struct SnakeFieldProgram : public ShaderProgram {
 		: ShaderProgram{
 			ShaderStage{"SnakeField.vert", GL_VERTEX_SHADER},
 			ShaderStage{"SnakeField.geom", GL_GEOMETRY_SHADER},
-			ShaderStage{"SnakeField.frag", GL_FRAGMENT_SHADER},
+			ShaderStage{"Empty.frag", GL_FRAGMENT_SHADER},
 		}
 	{}
 
@@ -44,13 +45,12 @@ struct SnakeFieldBackgroundProgram : public ShaderProgram {
 
 };
 
-SnakeRenderer::SnakeRenderer(Vec<2, int> field_size)
-	: field_size{ field_size }
-	, field_program( new SnakeFieldProgram{} )
-	, field_background_program( new SnakeFieldBackgroundProgram{} )
+SnakeRenderer::SnakeRenderer()
+	: field_program(new SnakeFieldProgram{})
+	, field_background_program(new SnakeFieldBackgroundProgram{})
 {}
 
-void SnakeRenderer::SetFieldPos(Vec<2, double> pos, Vec<2, double> size, double cell_size)
+void SnakeRenderer::SetFieldPos(Vec<2, double> pos, Vec<2, double> size, Vec<2, double> cell_size)
 {
 
 	field_background_program->SetUniform(SnakeFieldBackgroundProgram::uniform_field_pos, pos);
@@ -87,15 +87,17 @@ void SnakeRenderer::Flush()
 	}
 
 	{
+		vertices.push_back(EmptyCell);
 		auto u = field_program->Use(SnakeFieldProgram::ATTRIBUTE_COUNT);
 
-		field_program->SetAttribute(SnakeFieldProgram::attribute_pos, &vertices[0].pos, sizeof(SnakeCell));
-		field_program->SetAttribute(SnakeFieldProgram::attribute_color, &vertices[0].color, sizeof(SnakeCell));
-		field_program->SetAttribute(SnakeFieldProgram::attribute_dir0, &vertices[0].dir[0], sizeof(SnakeCell));
-		field_program->SetAttribute(SnakeFieldProgram::attribute_dir1, &vertices[0].dir[1], sizeof(SnakeCell));
+		field_program->SetAttribute(SnakeFieldProgram::attribute_prev_pos, &vertices[0].pos, sizeof(SnakeCell));
+		field_program->SetAttribute(SnakeFieldProgram::attribute_curr_pos, &vertices[1].pos, sizeof(SnakeCell));
+		field_program->SetAttribute(SnakeFieldProgram::attribute_next_pos, &vertices[2].pos, sizeof(SnakeCell));
+		field_program->SetAttribute(SnakeFieldProgram::attribute_color, &vertices[1].color, sizeof(SnakeCell));
+		field_program->SetAttribute(SnakeFieldProgram::attribute_dir_bits, 1, &vertices[1].dir_bits, sizeof(SnakeCell));
 
 		/**/
-		glDrawArrays(GL_POINTS, 0, (GLsizei)vertices.size());
+		glDrawArrays(GL_POINTS, 0, (GLsizei)vertices.size()-2);
 		/*/
 		glDrawArrays(GL_POINTS, 1, 1);
 		ThrowIfErr();
@@ -103,6 +105,7 @@ void SnakeRenderer::Flush()
 		/**/
 
 		vertices.clear();
+		vertices.push_back(EmptyCell);
 	}
 
 }

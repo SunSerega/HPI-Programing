@@ -24,15 +24,15 @@ using namespace std;
 
 
 
+bool started = false;
 
-
-int window_w, window_h;
+Vec<2, int> window_size;
 bool window_need_resize;
 void MainWindow::Resize(int w, int h)
 {
-	window_w = w;
-	window_h = h;
+	window_size = { w, h };
 	window_need_resize = true;
+	if (started) resize_ev.Wait();
 }
 
 queue<uint16_t> key_codes{};
@@ -58,10 +58,8 @@ void MainWindow::MainVisualLoop(std::function<void()> end_frame)
 
 #pragma region Init
 	
-	//ToDo non-square sizes
-	// - Only broken in window resizing
-	auto field_size = Vec<2, int>{ 50, 50 };
-	SnakeRenderer snake_renderer{ field_size };
+	auto field_size = Vec<2, int>{ 160, 90 };
+	auto snake_renderer = SnakeRenderer{};
 
 	auto player = Snake{ {field_size[0] / 2, field_size[1] / 2}, 0, 10, {0,1,0} };
 
@@ -69,7 +67,7 @@ void MainWindow::MainVisualLoop(std::function<void()> end_frame)
 	all_snakes.push_back(std::unique_ptr<Snake>{ &player, default_delete<Snake>(false) } );
 
 	auto foods = unordered_set<Vec<2, int>>{};
-	auto max_food = 100;
+	auto max_food = 600;
 
 	/**/
 	for (int i = 0; i < field_size[0]; ++i)
@@ -95,17 +93,28 @@ void MainWindow::MainVisualLoop(std::function<void()> end_frame)
 
 #pragma endregion
 
+	started = true;
+	//ToDo always Max CPU usage
 	while (running) {
 
 #pragma region Physics
 
 		//ToDo atomics
-		//ToDo blinking
+		//ToDo test resize using wglMakeCurrent to get rid of resize_ev
 		if (window_need_resize) {
 			window_need_resize = false;
-			int w = min(window_w, window_h);
-			glViewport((window_w - w) / 2 - w, (window_h - w) / 2 - w, w * 2, w * 2);
-			snake_renderer.SetFieldPos({ 0, 0 }, { 1, 1 }, 1. / field_size[0]);
+			auto cell_max_pixel_size = window_size / (Vec<2, double>)field_size;
+			auto cell_pixel_size = cell_max_pixel_size.get_min();
+			auto cell_clipspace_size = Vec<2, double>{
+				(cell_pixel_size*2) / window_size[0],
+				(cell_pixel_size*2) / window_size[1],
+			};
+			auto field_clipspace_size = cell_clipspace_size * field_size;
+
+			snake_renderer.SetFieldPos(field_clipspace_size*-0.5, field_clipspace_size, cell_clipspace_size);
+
+			glViewport(0,0, window_size[0],window_size[1]);
+			MainWindow::resize_ev.Set();
 		}
 
 		if (!key_codes.empty()) {

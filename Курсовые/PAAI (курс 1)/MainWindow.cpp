@@ -15,6 +15,7 @@
 /**/
 
 bool MainWindow::running = true;
+Event MainWindow::resize_ev = { false, false };
 
 HINSTANCE opengl_dll;
 void* LoadOpenGLFunction(char* name) {

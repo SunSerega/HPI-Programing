@@ -11,14 +11,17 @@ out vec3 color;
 layout(binding = 1) buffer temp_otp {
 	vec4 data[4];
 } temp;
+int i;
 /**/
 
 void SendVertex(double coord1, double coord2) {
 	gl_Position = vec4(coord1, coord2, 0, 1);
+	//temp.data[i++] = gl_Position;
 	EmitVertex();
 }
 
 void main() {
+	//i = 0;
 	color = vec3(0.6, 0.6, 0.6);
 	SendVertex(field_pos.x + field_size.x*0, field_pos.y + field_size.y*0);
 	SendVertex(field_pos.x + field_size.x*0, field_pos.y + field_size.y*1);

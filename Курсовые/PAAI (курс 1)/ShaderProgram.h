@@ -60,13 +60,13 @@ public:
 		glProgramUniform1d(this->id, id, val);
 	}
 	void SetUniform(GLint id, const Vec<2, double>& val) const {
-		glProgramUniform2d(this->id, id, val[0], val[1]);
+		glProgramUniform2dv(this->id, id, 1, &val[0]);
 	}
 	void SetUniform(GLint id, const Vec<3, double>& val) const {
-		glProgramUniform3d(this->id, id, val[0], val[1], val[2]);
+		glProgramUniform3dv(this->id, id, 1, &val[0]);
 	}
 	void SetUniform(GLint id, const Vec<4, double>& val) const {
-		glProgramUniform4d(this->id, id, val[0], val[1], val[2], val[3]);
+		glProgramUniform4dv(this->id, id, 1, &val[0]);
 	}
 
 	template <class T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
