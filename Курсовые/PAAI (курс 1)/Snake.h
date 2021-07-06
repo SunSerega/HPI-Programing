@@ -15,8 +15,8 @@ class Snake {
 	std::deque<Vec<2, int>> body;
 	int dir, next_dir;
 	double food = 3;
-	int move_delay = 0;
 	int max_move_delay;
+	int move_delay = 0;
 	Vec<3, float> color;
 
 	Snake* SplitAt(decltype(body)::iterator iter);

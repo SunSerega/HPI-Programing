@@ -61,7 +61,7 @@ void MainWindow::MainVisualLoop(std::function<void()> end_frame)
 	auto field_size = Vec<2, int>{ 160, 90 };
 	auto snake_renderer = SnakeRenderer{};
 
-	auto player = Snake{ {field_size[0] / 2, field_size[1] / 2}, 0, 10, {0,1,0} };
+	auto player = Snake{ field_size/2, 0, 10, {0,1,0} };
 
 	auto all_snakes = vector<std::unique_ptr<Snake>>{};
 	all_snakes.push_back(std::unique_ptr<Snake>{ &player, default_delete<Snake>(false) } );
@@ -101,6 +101,7 @@ void MainWindow::MainVisualLoop(std::function<void()> end_frame)
 
 		//ToDo atomics
 		//ToDo test resize using wglMakeCurrent to get rid of resize_ev
+		auto need_set_resize_ev = false;
 		if (window_need_resize) {
 			window_need_resize = false;
 			auto cell_max_pixel_size = window_size / (Vec<2, double>)field_size;
@@ -114,7 +115,7 @@ void MainWindow::MainVisualLoop(std::function<void()> end_frame)
 			snake_renderer.SetFieldPos(field_clipspace_size*-0.5, field_clipspace_size, cell_clipspace_size);
 
 			glViewport(0,0, window_size[0],window_size[1]);
-			MainWindow::resize_ev.Set();
+			need_set_resize_ev = true;
 		}
 
 		if (!key_codes.empty()) {
@@ -190,6 +191,7 @@ void MainWindow::MainVisualLoop(std::function<void()> end_frame)
 
 		glFinish();
 		ThrowIfErr();
+		if (need_set_resize_ev) MainWindow::resize_ev.Set();
 		end_frame();
 #pragma endregion
 

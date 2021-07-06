@@ -71,6 +71,9 @@ Snake* Snake::HitTestBody(Snake& sn1, Snake& sn2) {
 }
 
 array<Snake*, 2> Snake::HitTest(Snake& sn1, Snake& sn2) {
+	if (sn1.body.size() < 2) return {};
+	if (sn2.body.size() < 2) return {};
+
 	if (sn1.body[0] == sn2.body[0]) {
 		sn1.HeadLessReverse();
 		sn2.HeadLessReverse();

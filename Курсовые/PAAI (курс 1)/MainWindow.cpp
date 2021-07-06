@@ -112,7 +112,8 @@ int CALLBACK WinMain(
 						auto temp_free_time = free_time + 1 - frame_duration{ curr_t - last_t }.count();
 						if (temp_free_time > 0)
 						{
-							std::this_thread::sleep_for(frame_duration{ -temp_free_time });
+							std::this_thread::sleep_for(frame_duration{ temp_free_time });
+							curr_t = std::chrono::system_clock::now();
 							temp_free_time = free_time + 1 - frame_duration{ curr_t - last_t }.count();
 						}
 						else if (temp_free_time < min_overhead)
