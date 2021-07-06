@@ -7,21 +7,21 @@ struct Vec {
 #pragma region Add
 
 	template <class T2>
-	auto operator+(T2 scalar) {
+	auto operator+(const T2 scalar) const {
 		Vec<c, decltype(std::declval<T>() + std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] + scalar;
 		return res;
 	}
 	template <class T2>
-	auto operator+(Vec<c, T2> v) {
+	auto operator+(const Vec<c, T2> v) const {
 		Vec<c, decltype(std::declval<T>() + std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] + v[i];
 		return res;
 	}
 	template <class T2>
-	Vec operator+=(T2 v) {
+	Vec operator+=(const T2 v) {
 		Vec res = *this + v;
 		*this = res;
 		return res;
@@ -32,21 +32,21 @@ struct Vec {
 #pragma region Sub
 
 	template <class T2>
-	auto operator-(T2 scalar) {
+	auto operator-(const T2 scalar) const {
 		Vec<c, decltype(std::declval<T>() - std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] - scalar;
 		return res;
 	}
 	template <class T2>
-	auto operator-(Vec<c, T2> v) {
+	auto operator-(const Vec<c, T2> v) const {
 		Vec<c, decltype(std::declval<T>() - std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] - v[i];
 		return res;
 	}
 	template <class T2>
-	Vec operator-=(T2 v) {
+	Vec operator-=(const T2 v) {
 		Vec res = *this - v;
 		*this = res;
 		return res;
@@ -57,21 +57,21 @@ struct Vec {
 #pragma region Mul
 
 	template <class T2>
-	auto operator*(T2 scalar) {
+	auto operator*(const T2 scalar) const {
 		Vec<c, decltype(std::declval<T>() * std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] * scalar;
 		return res;
 	}
 	template <class T2>
-	auto operator*(Vec<c, T2> v) {
+	auto operator*(const Vec<c, T2> v) const {
 		Vec<c, decltype(std::declval<T>() * std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] * v[i];
 		return res;
 	}
 	template <class T2>
-	Vec operator*=(T2 v) {
+	Vec operator*=(const T2 v) {
 		Vec res = *this * v;
 		*this = res;
 		return res;
@@ -82,21 +82,21 @@ struct Vec {
 #pragma region Div
 
 	template <class T2>
-	auto operator/(T2 scalar) {
+	auto operator/(const T2 scalar) const {
 		Vec<c, decltype(std::declval<T>() / std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] / scalar;
 		return res;
 	}
 	template <class T2>
-	auto operator/(Vec<c, T2> v) {
+	auto operator/(const Vec<c, T2> v) const {
 		Vec<c, decltype(std::declval<T>() / std::declval<T2>())> res;
 		for (int i = 0; i < c; ++i)
 			res.val[i] = this->val[i] / v[i];
 		return res;
 	}
 	template <class T2>
-	Vec operator/=(T2 v) {
+	Vec operator/=(const T2 v) {
 		Vec res = *this / v;
 		*this = res;
 		return res;

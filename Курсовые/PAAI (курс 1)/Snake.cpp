@@ -90,7 +90,6 @@ bool Snake::TryStarve()
 		body.pop_back();
 		food += 1;
 	}
-	auto res = !body.size();
 	return !body.size();
 }
 
@@ -116,9 +115,9 @@ void Snake::Move(Vec<2, int> space_size) {
 		{ +0, -1 },
 		{ -1, +0 },
 	};
-	head += dir_offset[dir];
-	head[0] = (head[0] + space_size[0]) % space_size[0];
-	head[1] = (head[1] + space_size[1]) % space_size[1];
+	head += dir_offset[dir] + space_size;
+	head[0] %= space_size[0];
+	head[1] %= space_size[1];
 }
 
 void Snake::Render(SnakeRenderer& r)

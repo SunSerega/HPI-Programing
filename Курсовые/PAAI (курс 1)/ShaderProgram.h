@@ -10,10 +10,9 @@
 
 
 
-class ShaderStage;
 class ShaderProgram {
 private:
-	GLuint id;
+	GLuint id = 0;
 	//const std::vector<ShaderStage> stages;
 
 	struct UseLocker {
@@ -40,9 +39,9 @@ private:
 	};
 
 protected:
-	friend ShaderStage;
-	ShaderProgram(std::initializer_list<ShaderStage> stages);
-	template <class ... Ts> ShaderProgram(Ts ... stages) : ShaderProgram({ stages... }) {};
+	friend class ShaderStage;
+	ShaderProgram(std::initializer_list<ShaderStage*> stages);
+	template <class ... Ts> ShaderProgram(Ts&& ... stages) : ShaderProgram({ &stages... }) {};
 	ShaderProgram(ShaderProgram&& prev) noexcept
 		: id(prev.id)
 	{
@@ -93,7 +92,7 @@ class ShaderStage {
 private:
 	GLuint id;
 
-	friend ShaderProgram::ShaderProgram(std::initializer_list<ShaderStage>);
+	friend ShaderProgram::ShaderProgram(std::initializer_list<ShaderStage*>);
 
 public:
 	ShaderStage(const char* fname, GLenum type);

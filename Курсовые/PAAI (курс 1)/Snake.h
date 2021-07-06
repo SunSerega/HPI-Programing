@@ -12,11 +12,11 @@
 
 
 class Snake {
-	Vec<2, int> head{};
+	Vec<2, int> head;
 	std::deque<Vec<2, int>> body{};
 	int dir, next_dir;
-	double food;
-	int move_delay{};
+	double food = 3;
+	int move_delay = 0;
 	int max_move_delay;
 	Vec<3, float> color;
 
@@ -28,10 +28,9 @@ public:
 	Snake(Vec<2, int> head, int dir, int move_delay, Vec<3, float> color)
 		: head{ head }
 		, dir{ dir }, next_dir{ dir }
-		, food{ 3 }
 		, max_move_delay{ move_delay }
 		, color{ color }
-	{};
+	{}
 
 	bool ChangeDir(int dir);
 

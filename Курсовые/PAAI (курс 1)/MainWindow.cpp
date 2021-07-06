@@ -40,7 +40,7 @@ int CALLBACK WinMain(
 
 		auto MainWindowClassName = L"PAAI Main window class name";
 
-		WNDCLASSEX wcex; {
+		WNDCLASSEX wcex{}; {
 			wcex.cbSize = sizeof(WNDCLASSEX);
 			wcex.style = 0;// CS_HREDRAW | CS_VREDRAW;
 			wcex.lpfnWndProc = [](HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)->LRESULT {

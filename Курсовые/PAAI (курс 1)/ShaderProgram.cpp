@@ -45,12 +45,12 @@ ShaderStage::~ShaderStage()
 	glDeleteShader(id);
 }
 
-ShaderProgram::ShaderProgram(std::initializer_list<ShaderStage> stages)
+ShaderProgram::ShaderProgram(std::initializer_list<ShaderStage*> stages)
 	: id( glCreateProgram() )
 	//, stages(stages)
 {
-	for (auto&& stage : stages)
-		glAttachShader(this->id, stage.id);
+	for (auto stage : stages)
+		glAttachShader(this->id, stage->id);
 	glLinkProgram(id);
 
 	GLint status;
@@ -72,3 +72,5 @@ ShaderProgram::~ShaderProgram()
 	if (!id) return;
 	glDeleteProgram(id);
 }
+
+
