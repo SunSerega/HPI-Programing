@@ -12,8 +12,7 @@
 
 
 class Snake {
-	Vec<2, int> head;
-	std::deque<Vec<2, int>> body{};
+	std::deque<Vec<2, int>> body;
 	int dir, next_dir;
 	double food = 3;
 	int move_delay = 0;
@@ -24,9 +23,15 @@ class Snake {
 	void HeadLessReverse();
 	static Snake* HitTestBody(Snake& sn1, Snake& sn2);
 
+	Snake(std::deque<Vec<2, int>> body, int dir, int move_delay, Vec<3, float> color)
+		: body{ body }
+		, dir{ dir }, next_dir{ dir }
+		, max_move_delay{ move_delay }
+		, color{ color }
+	{}
 public:
 	Snake(Vec<2, int> head, int dir, int move_delay, Vec<3, float> color)
-		: head{ head }
+		: body{ head }
 		, dir{ dir }, next_dir{ dir }
 		, max_move_delay{ move_delay }
 		, color{ color }

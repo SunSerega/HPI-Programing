@@ -25,6 +25,7 @@ class SnakeRenderer{
 
 	static constexpr SnakeCell EmptyCell{ {},{},0 };
 	std::vector<SnakeCell> vertices{ EmptyCell };
+	bool in_snake = false;
 
 public:
 	SnakeRenderer();
@@ -35,13 +36,17 @@ public:
 
 	void SetFieldPos(Vec<2, double> pos, Vec<2, double> size, Vec<2, double> cell_size);
 
-	void AddHead(Vec<2, int> pos, Vec<3, float> color) {
-		vertices.push_back({ pos, color, 0 });
-	}
-
 	void AddBody(Vec<2, int> pos, Vec<3, float> color) {
-		vertices.back().dir_bits |= SnakeCell::DIR_HAS_NEXT_BIT;
-		vertices.push_back({ pos, color, SnakeCell::DIR_HAS_PREV_BIT });
+		SnakeCell curr{ pos, color };
+		if (in_snake) {
+			vertices.back().dir_bits |= SnakeCell::DIR_HAS_NEXT_BIT;
+			curr.dir_bits = SnakeCell::DIR_HAS_PREV_BIT;
+		}
+		else in_snake = true;
+		vertices.push_back(curr);
+	}
+	void EndSnake() {
+		in_snake = false;
 	}
 
 	void AddFood(Vec<2, int> pos) {

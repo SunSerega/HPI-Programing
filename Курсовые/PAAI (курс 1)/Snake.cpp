@@ -12,7 +12,6 @@ bool Snake::ChangeDir(int dir) {
 
 vector<Vec<2, int>> Snake::TryEatAll(unordered_set<Vec<2, int>>& foods, double k) {
 	vector<Vec<2, int>> eaten{};
-	if (foods.erase(head)) eaten.push_back(head);
 	for (Vec<2, int> b : body)
 		if (foods.erase(b)) eaten.push_back(b);
 	this->food += eaten.size() * k;
@@ -30,41 +29,41 @@ int CalcDir(Vec<2, int> dir) {
 
 Snake* Snake::SplitAt(decltype(body)::iterator iter)
 {
-	Vec<2, int> last_body = body.end()[-1];
-	Vec<2, int> pre_last_body = body.size() > 1 ? body.end()[-2] : head;
 
-	auto res = new Snake(last_body, CalcDir(last_body-pre_last_body), max_move_delay, color);
-	res->move_delay = this->move_delay;
+	auto res = new Snake(
+		deque<Vec<2, int>>(body.rbegin(), decltype(body.rbegin()){ iter + 1 }),
+		CalcDir(body.end()[-1]-body.end()[-2]),
+		max_move_delay,
+		color
+	);
 	res->food = 0;
-	if (iter+1 != body.end()) res->body = deque<Vec<2, int>>(body.rbegin() + 1, decltype(res->body)::reverse_iterator{ iter+1 });
+	res->move_delay = max_move_delay-1;
 
 	body.erase(iter, body.end());
 	return res;
 }
 void Snake::HeadLessReverse() {
 	food = 0;
-	if (body.size() < 2)
-		return;
 
-	head = body.back();
-	body.pop_back();
+	body.pop_front();
+	if (body.size() < 2) return;
 	reverse(body.begin(), body.end());
 
-	dir = CalcDir(head - body.front());
+	dir = CalcDir(body[0]-body[1]);
 	next_dir = dir;
 }
 
 Snake* Snake::SelfHitTest() {
-	for (auto iter = body.begin(); iter != body.end(); ++iter)
-		if (head == *iter) {
+	for (auto iter = body.begin()+1; iter != body.end(); ++iter)
+		if (body[0] == *iter) {
 			food += 1;
 			return SplitAt(iter);
 		}
 	return nullptr;
 }
 Snake* Snake::HitTestBody(Snake& sn1, Snake& sn2) {
-	for (auto iter = sn1.body.begin(); iter != sn1.body.end(); ++iter)
-		if (sn2.head == *iter) {
+	for (auto iter = sn1.body.begin()+1; iter != sn1.body.end(); ++iter)
+		if (sn2.body[0] == *iter) {
 			sn2.food += 0.5;
 			return sn1.SplitAt(iter);
 		}
@@ -72,7 +71,7 @@ Snake* Snake::HitTestBody(Snake& sn1, Snake& sn2) {
 }
 
 array<Snake*, 2> Snake::HitTest(Snake& sn1, Snake& sn2) {
-	if (sn1.head == sn2.head) {
+	if (sn1.body[0] == sn2.body[0]) {
 		sn1.HeadLessReverse();
 		sn2.HeadLessReverse();
 		return {};
@@ -90,7 +89,7 @@ bool Snake::TryStarve()
 		body.pop_back();
 		food += 1;
 	}
-	return !body.size();
+	return body.size() < 2;
 }
 
 void Snake::Move(Vec<2, int> space_size) {
@@ -108,21 +107,21 @@ void Snake::Move(Vec<2, int> space_size) {
 	else
 		body.pop_back();
 
-	body.push_front(head);
 	static const Vec<2, int> dir_offset[4]{
 		{ +0, +1 },
 		{ +1, +0 },
 		{ +0, -1 },
 		{ -1, +0 },
 	};
-	head += dir_offset[dir] + space_size;
+	auto head = body.front() + dir_offset[dir] + space_size;
 	head[0] %= space_size[0];
 	head[1] %= space_size[1];
+	body.push_front(head);
 }
 
 void Snake::Render(SnakeRenderer& r)
 {
-	r.AddHead(head, this->color);
 	for (Vec<2, int> b : body)
 		r.AddBody(b, this->color);
+	r.EndSnake();
 }
