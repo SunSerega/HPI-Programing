@@ -31,9 +31,6 @@ public:
 		mlt = x * y;
 	}
 
-	friend istream& operator>>(istream& inp, Point& p) {
-		return inp >> p.x >> p.y;
-	}
 	friend ostream& operator<<(ostream& otp, const Point& p) {
 		return otp << "Point[" << p.x << ", " << p.y << "]";
 	}
@@ -42,10 +39,13 @@ public:
 
 void A() {
 
-	Point p;
 	cout << "Enter point coords: ";
-	cin >> p;
-	cout << "original=" << p << " copy=" << Point{p} << endl;
+	double x, y;
+	cin >> x >> y;
+	Point p{ x,y };
+	cout << "Empty=" << Point{} << ' '
+	     << "Reconstructed=" << p << ' '
+	     << "Copy=" << Point{ p } << endl;
 
 	double sum, mlt;
 	p.sum_mlt(sum, mlt);
@@ -100,13 +100,17 @@ public:
 		: r{ r }, i{ i }
 	{}
 
+	void AddR(int r) {
+		this->r += r;
+	}
+	void AddI(int i) {
+		this->i += i;
+	}
+
 	friend Complex operator+(const Complex& c1, const Complex& c2) {
 		return { c1.r + c2.r, c1.i + c2.i };
 	}
 
-	friend istream& operator>>(istream& inp, Complex& c) {
-		return inp >> c.r >> c.i;
-	}
 	friend ostream& operator<<(ostream& otp, const Complex& c) {
 		return otp << c.r << "+i*" << c.i;
 	}
@@ -116,9 +120,10 @@ public:
 void C() {
 
 	cout << "Enter real and imaginary parts of complex c: ";
-	Complex c;
-	cin >> c;
-	cout << "Reconstructed c: " << c << endl;
+	double r, i;
+	cin >> r >> i;
+	Complex c{r, i};
+	cout << "Empty=" << Complex{} << "Reconstructed c: " << c << endl;
 
 	cout << "c+c = " << c + c << endl;
 
@@ -133,22 +138,18 @@ class Dog {
 	double weight, age;
 
 public:
-	Dog(string name, double weight)
-		: name{ name }
-		, weight{ weight }, age{0}
-	{}
-	Dog(string name, double weight, double age)
+	Dog(string name, double weight, double age = 0)
 		: name{ name }
 		, weight{ weight }, age{ age }
 	{}
 
-	auto get_name() {
+	auto get_name() const {
 		return name;
 	}
-	auto get_weight() {
+	auto get_weight() const {
 		return weight;
 	}
-	auto get_age() {
+	auto get_age() const {
 		return age;
 	}
 
@@ -181,38 +182,45 @@ public:
 		dogs.push_back(forward<T>(dog));
 	}
 
-	auto get_name() {
+	auto get_name() const {
 		return name;
 	}
 
-	auto get_id() {
+	auto get_id() const {
 		return id;
 	}
 
-	auto begin() {
+	auto begin() const {
 		return dogs.begin();
 	}
-	auto end() {
+	auto end() const {
 		return dogs.end();
 	}
 
 };
 int Master::last_id = 0;
 
-void D() {
-
-	Master m{ "Mike" };
-
-	m.add_dog({ "dog1", 12 });
-	m.add_dog({ "dog2", 15, 3 });
-
-	cout << "Master " << m.get_name() << "#" << m.get_id() << " has dogs:" << endl;
+ostream& operator<<(ostream& otp, const Master& m) {
+	otp << "Master " << m.get_name() << "#" << m.get_id() << " has dogs:" << endl;
 	for (auto& d : m) {
 		cout << "\tdog \"" << d.get_name() << "\""
 			<< " weighs " << d.get_weight()
 			<< " at the age of " << d.get_age()
-		<< endl;
+			<< endl;
 	}
+	return otp;
+}
+
+void D() {
+
+	Master m1{ "m.First" };
+	m1.add_dog({ "dog1", 12 });
+	m1.add_dog({ "dog2", 15, 3 });
+	cout << m1;
+
+	Master m2{ "m.Second" };
+	m2.add_dog({ "dog1", 13 });
+	cout << m2;
 
 }
 
