@@ -133,7 +133,7 @@ int main()
 	{
 		cout << "a1: ";
 		A a1{};
-		auto a2 = a1;
+		A a2 = a1;
 		cout << "a1 == a2(copy): " << (a1 == a2 ? "true" : "false") << endl;
 		cout << "a2: ";
 		a2 = A{};

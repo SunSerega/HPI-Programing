@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Transitional//EN">
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <meta name="Author" content="Oleg G. Starusev">
+   <meta name="Generator" content="Far Editor">
+   <meta name="Description" content="C++">
+   <meta name="Owner" content="derev@insart.kharkov.ua">
+   <meta name="Keywords" content="программирование, C">
+
+<title>Основы программирования. Лабораторные работы </title>
+<!--                                                                   -->
+<!-- (C) Oleg G. Starusev -->
+<!-- (C) НТУ "ХПИ". Каф.Информатики и интеллектуальной собственности, 2002. -->
+
+</head>
+
+<body background=../../iip_1.jpg>
+<p>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=lab3.html >Назад</a></td><td><a href=index.html>Оглавление</a></td><td><a href=lab5.html>Вперед</a></td></tr>
+</table>
+</p>
+<hr>
+
+<H2 align=center>Лабораторная работа ╧4<BR>Работа с динамической памятью в языке С++.</H2>
+<H3 align=center>1. Цель работы</H3>
+<P>Целью лабораторной работы является получение практических навыков при 
+использовании операторов <b><i>new</b></i> и <b><i>delete</b></i> в языке С++.</P>
+<H3 align=center>2. Темы для предварительного изучения</H3>
+<P>
+<UL>
+  <LI>Классы
+  <LI>Конструкторы и деструкторы
+  <LI>Указатели и ссылки 
+</LI></UL>
+<P></P>
+<H3 align=center>3. Варианты индивидуальных заданий</H3>
+<P>Смотри <a href="../lab/l10.htm">лабораторную работу ╧10</a> (части I). </P>
+
+<H3 align=center>4. Задание к выполнению</H3>
+<P>Написать электронную таблицу для сбора информации из вашего варианта задания.<br><br> 
+<UL>
+<LI>для хранения информации не использовать статические переменные, а динамически добавлять их с помощью операторов <b><i>new</b></i> и <b><i>delete</b></i>.<br>
+<LI>все объекты и структуры также должны создаваться динамически.<br>
+<LI>необходимо создать методы для добавления новой записи в конец таблицы и для удаления последней записи из таблицы (методы <b><i>add_record</b></i>, <b><i>delete_record</b></i>).
+<LI>необходимо предусмотреть возможность сортировки таблицы по первому полю
+</LI></UL>
+	Количество записей в таблице можно ограничить 12, а также предусмотреть ситуацию, когда в таблице отсутствуют записи.
+</P>
+
+<H3 align=center>5. Пример выполнения (вариант 30)</H3><BR>
+<p>
+Для выполнения задания нам потребуется класс из <a href="lab2.htm">лабораторной работы ╧2</a> со всеми дружественными функциями и функциями-членами. Ещ╦ нужно добавить inline-функцию  <b><i>char  ret_name() {return *name;}</b></i> в описание класса. Потребность в ней будет разъяснена позднее. Также необходимо разработать класс, который будет производить операции добавления, удаления записей, сортировку базы данных. Создадим для этих целей класс <b><i>DB</b></i>. Его полями будут: <br><br>
+
+<b><i>char title[30]</b></i>&nbsp;&nbsp; -  название базы данных<br>
+<b><i> church *rows[12];</b></i>&nbsp;&nbsp; - количество строк в базе данных (указатель на 12 экземпляров класса <b><i>church</i></b>)<br>
+<b><i> int col</b></i>&nbsp;&nbsp; - индекс строк в базе данных<br>
+<b><i> int sorted</b></i>&nbsp;&nbsp; - флаг, показывающий отсортирована / неотсортирована база данных<br><br>
+
+Определим конструктор по умолчанию, на который возложим функцию инициализации названия базы данных. <br><br>
+<pre>
+ DB(char *q) {strcpy(title,q); col=0; sorted=0;}
+</pre>
+Деструктор будет освобождать память, занимаемую базой данных.<br><br>
+<pre>
+ ~DB(){if (col) for (int i=0; i&lt;col; i++) delete rows[i];}
+</pre>
+Определим необходимые функции:<br><br>
+<pre>
+ void add_rec(char *a, char b, int c, int d);
+</pre>
+Суть работы функции заключается в том, что ей передаются параметры с типами данных, которые соответствуют всем полям  класса <i><b>church</i></b> и затем эти параметры передаются в инициализирующий конструктор этого класса при помощи его явного вызова. Т.е, как видно, класс <b><i>DB</i></b> не дублирует функции класса <i><b>church</i></b>, а гибко с ним взаимодействует.<br><br>
+
+<pre>
+ void del_rec();
+</pre>
+Работа данной функции сводится к освобождению памяти, которую занимает один экземпляр класса. Для этого необходим вызов: <i><b>delete rows[индекс_удаляемого_объекта] </i></b>.<br><br>
+
+<pre>
+ void sort_DB();
+</pre>
+Для выполнения сортировки нам потребуется уже упомянутая выше функция <b><i>char  ret_name() </b></i>, которая будет возвращать названия монастырей для каждого из объектов, по которым и производится сортировка.<br><br>
+
+<pre>
+ friend ostream & operator&lt;&lt;(ostream &stream, DB &temp);
+</pre>
+Как вы заметили, для класса <i><b>DB</i></b> перегружен оператор &lt;&lt;. Такое действие позволяет выводить шапку базы данных и дополнительные сведения до вывода самих данных. 
+</p>
+
+Полный текст программы приведен ниже.
+
+<hr>
+<p align="Center"><h4 align="Center">
+Лабораторная работа ╧4<br>
+Работа с динамической памятью. <br>
+Вариант ╧30               	        	  	<br>
+Пример выполнения                <br>
+</h4></p>
+<hr>
+<PRE>	
+#include &lt;iostream.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;iomanip.h&gt;
+
+class church {
+ char *name;
+ char school;
+ unsigned int count;
+ unsigned short square;
+ friend ostream & operator&lt;&lt;(ostream &stream, church &o1);
+ friend istream & operator&gt;&gt;(istream &stream, church &o1);
+ friend void shapka(void);
+ friend void linebuild(void);
+public:
+ church() { count=0; square=0;}
+ church(char *a, char b, unsigned int &c, float &d);
+ void set(char *a,char ,unsigned int ,float );
+ void get(char *a, char &b, unsigned int &c, float &d);
+ void show(void);
+ char  ret_name() {return *name;}
+};
+
+class DB {
+ char title[30];
+ church *rows[12];
+ int col;
+ int sorted;
+public:
+ DB(char *q) {strcpy(title,q); col=0; sorted=0;}
+ ~DB(){if (col) for (int i=0; i&lt;col; i++) delete rows[i];}
+ void add_rec(char *a, char b, int c, int d);
+ void del_rec();
+ void sort_DB();
+ friend ostream & operator&lt;&lt;(ostream &stream, DB &temp);
+};
+
+void DB::add_rec(char *a, char b, int c, int d) {
+ if (col&gt;=12) return;
+ else col++;
+ rows[col-1] = new church(a,b,c,d);
+ sorted=0;
+}
+
+void DB::del_rec() {
+ if (col&lt;=0) return;
+ delete  rows[col-1];
+ col--;
+ }
+
+void DB::sort_DB() {
+ char s1;
+ char s2;
+ if (col&lt;2) return;
+ church *temp;
+
+ for (int i=0; i&lt;col; i++)
+  for (int j=i+1; j&lt;col; j++) {
+   s1 = rows[i]-&gt;ret_name();
+   s2 = rows[j]-&gt;ret_name();
+    if (s1 &gt; s2) {
+     temp=rows[i];
+     rows[i]=rows[j];
+     rows[j]=temp;
+    }
+  }
+sorted=1;
+}
+
+ ostream & operator&lt;&lt;(ostream &stream, DB &o1) {
+ stream&lt;&lt;o1.title&lt;&lt;endl;
+  if (o1.sorted==0) stream&lt;&lt;"Таблица не отсортирована.\n";
+  else stream&lt;&lt;"Таблица отсортирована.\n";
+  shapka();
+ if (!o1.col) stream&lt;&lt;"Таблица пуста.";
+ else {
+   for (int i=0; &lt;o1.col; i++) {
+    stream&lt;&lt;*o1.rows[i];
+   }
+ }
+return stream;
+}
+
+ ostream & operator&lt;&lt;(ostream &stream, church &o1) {
+  stream&lt;&lt;"|"&lt;&lt;setw(10)&lt;&lt;o1.name&lt;&lt;"  |  ";
+  stream&lt;&lt;setw(5)&lt;&lt;o1.school&lt;&lt;"|";
+  stream&lt;&lt;setw(18)&lt;&lt;o1.count&lt;&lt;"  |";
+  stream&lt;&lt;setw(17)&lt;&lt;o1.square&lt;&lt;"  |"; endl;
+  linebuild();
+ return stream;
+ }
+
+church::church(char *a, char b, unsigned int &c, float &d) {
+ name=new char [strlen(a)+1];
+ strcpy(name,a);
+ school=b;
+ count=c;
+ square=d;
+}
+
+void church::set(char *a,char b,unsigned int c,float d) {
+ for (int i=0; i&lt;10; i++){
+  name[i]=a[i];
+ }
+ school=b;
+ count=c;
+ square=d;
+}
+
+void church::show(void) {
+ cout&lt;&lt;name&lt;&lt;" ";
+ cout&lt;&lt;school&lt;&lt;" ";
+ cout&lt;&lt;count&lt;&lt;" ";
+ cout&lt;&lt;square&lt;&lt;" ";
+}
+
+void church::get( char * a, char &b, unsigned int &c, float &d)
+{
+ strcpy(a,name);
+ b=school;
+ c=count;
+ d=square;
+}
+
+void shapka(void)
+{
+ cout&lt;&lt;"_______________________________________________________________\n";
+ cout&lt;&lt;"|         Буддистские монастыри Японии периода Нара           |\n";
+ cout&lt;&lt;"|-------------------------------------------------------------|\n";
+ cout&lt;&lt;"|  Название  | Школа | Количество монахов | Площадь земли(га) |\n";
+ cout&lt;&lt;"|-------------------------------------------------------------|\n";
+ }
+
+void linebuild(void) {
+ cout&lt;&lt;"\n|-------------------------------------------------------------|\n";
+}
+
+int main(void) {
+  char *n;
+  char t;
+  unsigned int s;
+  float h;
+  short i;
+  short q,q1;
+
+ clrscr();
+ DB *tmp = new DB("\nБАЗА ДАННЫХ ╧1\n");
+
+ for (int a=0; !a;){
+ clrscr();
+ cout &lt;&lt;"1. Добавить запись\n"  ;
+ cout &lt;&lt;"2. Удалить запись\n";
+ cout &lt;&lt;"3. Сортировать базу\n";
+ cout &lt;&lt;"4. Вывести базу\n";
+ cout &lt;&lt;"5. Выход\n";
+ cout &lt;&lt;"&gt; ";
+ int p;
+ cin&gt;&gt;p;
+  switch(p) {
+    case 1: {
+	 cout&lt;&lt;"Наименование, Тип, Посевная площадь, Урожайность \n";
+	
+	/*cin&gt;&gt;n;  Закомментированные строки отвечают за чтение значений
+	 cin&gt;&gt;t;   переменных с клавиатуры и записи их в поля объекта.
+	 cin&gt;&gt;s;   Для удобства работы используется инициализация через
+	 cin&gt;&gt;h;   конструктор 3-х объектов.
+	 tmp-&gt;add_rec(n,t,s,h); */
+
+	 tmp-&gt;add_rec("Тотайдзи",'Т',220,368.8);
+	 tmp-&gt;add_rec("Якусидзи",'С',50,54.7);
+	 tmp-&gt;add_rec("Дайандзи",'Д',10,12.2);
+	 break;
+    }
+
+    case 2: {
+	 tmp-&gt;del_rec();
+	 break;
+    }
+
+    case 3: {
+	tmp-&gt;sort_DB();
+	break;
+    }
+
+    case 4: {
+	cout&lt;&lt;*tmp;
+	cout&lt;&lt;"\nНажмите клавишу для продолжения...";
+	getch();
+	break;
+    }
+
+    case 5: {
+	a=1;
+	break;
+	}
+
+    default :{
+	cout &lt;&lt; "Неверный вызов";
+	getch();
+	break;
+    }
+  }
+}
+return 0;
+}
+ </PRE>
+<hr>
+<p>
+<table cellpadding=10>
+<tr><td><a href=lab3.html >Назад</a></td><td><a href=index.html>Оглавление</a></td><td><a href=lab5.html>Вперед</a></td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+</p>
+</body>
+</html>

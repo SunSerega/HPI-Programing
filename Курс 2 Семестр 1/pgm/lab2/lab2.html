@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Transitional//EN">
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <meta name="Author" content="Oleg G. Starusev">
+   <meta name="Generator" content="Far Editor">
+   <meta name="Description" content="C++">
+   <meta name="Owner" content="derev@insart.kharkov.ua">
+   <meta name="Keywords" content="программирование, C">
+
+<title>Основы программирования. Лабораторные работы </title>
+<!--                                                                   -->
+<!-- (C) Oleg G. Starusev -->
+<!-- (C) НТУ "ХПИ". Каф.Информатики и интеллектуальной собственности, 2002. -->
+
+</head>
+
+<body background=../../iip_1.jpg>
+<p>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=lab1.html >Назад</a></td><td><a href=index.html>Оглавление</a></td><td><a href=lab3.html>Вперед</a></td></tr>
+</table>
+</p>
+<hr>
+
+<H2 align=center>Лабораторная работа ╧2<BR>Перегрузка операторов в языке 
+С++</H2>
+<H3 align=center>1. Цель работы</H3>
+<P>Целью лабораторной работы является получение практических навыков в 
+использовании перегрузки операторов в языке С++.</P>
+<H3 align=center>2. Темы для предварительного изучения</H3>
+<P>
+<UL>
+  <LI>Введение в классы 
+  <LI>Перегрузка функций 
+  <LI>Перегрузка операторов </LI></UL>
+<P></P>
+<H3 align=center>3. Варианты индивидуальных заданий</H3>
+<P>Смотри <a href=../lab/l02.html>лабораторную работу ╧2</a> (части I). </P>
+<P>Четные номера делают перегрузку функций как членов класса, нечетные - как 
+дружественные функции. </P>
+<H3 align=center>4. Задание к выполнению</H3>
+<P>Задание к выполнению аналогично заданию в <a href=../lab/l10.html>лабораторной работе ╧10</a> (части I), 
+но программа должна быть составлена с использованием класса, необходимо 
+предусмотреть функции доступа к полям класса (функции <B><I>get()</I></B> и 
+<B><I>set()</I></B>) и необходимо перегрузить следующие операторы: 
+<UL>
+  <LI>Присваивание; 
+  <LI>Сложение (в случае символьных полей сложение понимается как конкатенация); 
+  <LI>Соответствие; 
+  <LI>Потоковый ввод; 
+  <LI>Потоковый вывод. </LI></UL>
+
+
+<H3 align=center>5. Пример решения задачи (вариант 30).</H3>
+<h4 align=center>5.1. Разработка алгоритма решения.</h4>
+<p>
+ Алгоритм программы линейный и его программная реализация не представляется затруднительной.
+</p>
+
+
+<h4 align=center>5.2. Описание структуры класса.</h4>
+<h4 >5.2.1. Описание полей класса.</h4>
+
+<p>
+ Для выполнения условий задания нам потребуется класс с функциями-аксессорами из <a href="lab1.htm">предыдущей</a> лабораторной работы. Напомним, что класс, описывающий <i>Буддистские монастыри Японии </i> имеет следующие поля:
+<UL>
+	<LI><i>Название. </i> -   <i><b>char * </b></i>.
+	<LI><i>Школа </i>. Тип этого поля претерпел изменения, вызванные новыми условиями. На первый взгляд, тип этого поля можно оставить прежним -  <i><b>char </b></i>. Но на самом деле оказывается, что для выполнения перегрузки оператора суммы    				и  			корректного выполнения программы,  тип данного поля необходимо определить как <i><b>char * </b></i>. Это можно 			объяснить тем, что при перегрузке оператора суммы необходимо произвести конкатенацию символьных полей. Таким 			образом при сложении полей хотя бы двух экземпляров класса для хранения данных поля <i>Школа </i> потребуется 			уже не <i><b>char </b></i>, а <i><b>char[1] </b></i>.
+	<LI><i>Количество монахов. </i> - <i><b>unsigned int</b></i>.
+	<LI><i>Площадь земли. </i> - <i><b>float</b></i>.</i>
+	</LI>
+</UL>
+
+</p>
+
+<h4>5.2.2. Функции - члены класса и дружественные функции.</h4>
+<p>
+Класс <b><i>church</b></i> имеет следующие функции-члены:<br>
+<UL>
+	<LI> void set(char *a,char *b,unsigned int ,float );
+	<LI> void get(char *a, char *b, unsigned int &c, float &d);
+	<LI> void show(void);
+	<LI> church operator = (church &o1);
+	<LI> int    operator == (church &o1);
+	<LI> church operator + (church &o1);<br><br>
+а также два конструктора - по умолчанию и инициализирующий:<br><br>
+	<LI> church() { square=0; count=0;}
+	<LI> church(char *a, char *b, unsigned int &c, float &d);
+</li>
+</UL><br>
+Класс <b><i>church</b></i> имеет следующие дружественные функции:<br>
+<UL>
+	<LI> friend ostream & operator&lt;&lt;(ostream &stream, church &o1);
+	<LI> friend istream & operator&gt;&gt;(istream &stream, church &o1);
+	<LI> friend void shapka(void);
+	<LI> friend void linebuild(void); 
+	<LI> friend int isvalid(int a, int b);
+</LI> 
+</UL>
+</p>
+
+
+<h4 align=center>5.3. Разработка текста программы</h4>
+<p>
+Для удобства работы с программой введ╦м переменную-константу, которая будет отвечать за количество экземпляров класса <b><i>church</b></i>. То есть будем работать с массивом объектов класса <b><i>church</b></i> размерностью <b><i>N</b></i>.<br>
+<br>
+<pre>#define N 3</pre><br>
+Перейд╦м к описанию объявленных выше функций:<br><br>
+Отметим, что функции <b><i>set, get, show</b></i> взяты из <a href="lab1.htm">предыдущей</a> лабораторной работы и остались без изменений.<br><br>
+
+<i><b>church operator = (church &o1);</i></b><br>
+Данная функция производит перегрузку оператора присваивания, то есть выполняет присваивание полей одного объекта класса полям другого объекта этого же класса. При перегрузке бинарного оператора левый операнд переда╦тся функции неявно, а правый переда╦тся в качестве аргумента. Возвращаемый тип - сам класс, т.е  <i><b>church</i></b>. Как и в предыдущей лабораторной работе для корректной работы со строками требуется динамическое выделение памяти и е╦ освобождение.
+В целом эта функия - аналог функции <b><i>set</b></i>.<br><br>
+
+<i><b>int    operator == (church &o1);</i></b><br>
+Функция позволяет установить соответствие между  экземплярами одного класса. Т.е. е╦ тело включает проверку на равенство значений числовых полей и сравнение содержимого строк, которое выполняется с помощью функции <i><b>strcmp</i></b>.  В зависимости от того, тождественны ли экземпляры функцией возвращается 0 или 1.<br><br>
+
+<i><b>church operator + (church &o1);</i></b><br>
+ Функция <i><b>operator+()</i></b> возвращает объект типа <i><b>church</i></b> Отметим тот факт, что временный объект <i><b>tr</i></b> используется внутри функции <i><b>operator+()</i></b> для хранения результата и является возвращаемым объектом. Отметим также, что ни один из операндов не меняется. Назначение переменной <i><b>tr</i></b> легко понять.<br><br>
+
+В данной ситуации (как и в большинстве ситуаций) оператор + был перегружен способом, аналогичным своему традиционному арифметическому использованию. Поэтому и было важно, чтобы ни один из операндов не менялся. Например, когда вы складываете 10+4, результат равен 14, но ни 10, ни 4 не меняются. Таким образом, временный объект необходим для хранения результата.<br><br>
+
+	<i><b>friend ostream & operator&lt;&lt;(ostream &stream, church &o1);</i></b><br>
+Первый параметр является ссылкой на объект типа <b>ostream</b>. Это означает, что поток <b>stream</b> должен быть потоком вывода.  Второй параметр получает выводимый объект. (Он, если для вашего приложения это нужно, тоже может быть параметром-ссылкой). Обратите внимание, что пользовательская функция вывода возвращает ссылку на поток <b>stream</b>, который имеет тип <b>ostream</b>. Это необходимо, если перегруженный оператор &lt;&lt; должен использоваться в ряде последовательных выражений ввода/вывода. <br><br>
+
+	<i><b> friend istream & operator&gt;&gt;(istream &stream, church &o1);</i></b><br>
+Пользовательские функции ввода возвращают ссылку, на поток <b>istream</b>, который является потоком ввода. Первый параметр тоже является ссылкой на поток ввода. Второй параметр ≈ это ссылка на объект, получающий вводимую информацию.<br><br>
+
+Так же, как и пользовательская функция вывода, пользовательская функция ввода не может быть функцией-членом. Хотя внутри такой функции может быть выполнена любая операция, лучше ограничить ее работу вводом информации.<br>
+<br>
+
+
+	<i><b>friend void shapka(void);</i></b><br>
+Данная функция является вспомогательной. Она формирует шапку таблицы при вызове перегруженной формы оператора <b>&lt;&lt;</b></b><br><br>
+
+	<i><b>friend int isvalid(int a, int b);</i></b><br>
+Функция, описанная выше выполняет проверку данных, которые вводит пользователь. Т.е проверяет соответствие номеров класса на существование.<br>
+
+</p>
+
+
+
+
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Полный текст программы приведен ниже.
+<hr>
+<p align="Center"><h4 align="Center">
+Лабораторная работа ╧2<br>
+Перегрузка операторов в языке C++. <br>
+Вариант ╧30               	        	  	<br>
+Пример выполнения                <br>
+</h4></p>
+<hr>
+<pre>
+#include &lt;iostream.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;iomanip.h&gt;
+#define N 3             //количество экземпляров класса
+
+class church {
+ char *name;
+ char *school;
+ unsigned int count;
+ float square;
+ friend ostream & operator&lt;&lt;(ostream &stream, church &o1);
+ friend istream & operator&gt;&gt;(istream &stream, church &o1);
+ friend void shapka(void);
+ friend void linebuild(void);
+ friend int isvalid(int a, int b);
+public:
+ church() { square=0; count=0;}
+ church(char *a, char *b, unsigned int &c, float &d);
+ void setall(char *a,char *b,unsigned int ,float );
+ void getall(char *a, char *b, unsigned int &c, float &d);
+ void showall(void);
+ church operator = (church &o1);
+ int    operator == (church &o1);
+ church operator + (church &o1);
+};
+
+ ostream & operator&lt;&lt;(ostream &stream, church &o1) {
+  shapka();
+  stream&lt;&lt;"|"&lt;&lt;setw(10)&lt;&lt;o1.name&lt;&lt;"  |  ";
+  stream&lt;&lt;setw(5)&lt;&lt;o1.school&lt;&lt;"|";
+  stream&lt;&lt;setw(18)&lt;&lt;o1.count&lt;&lt;"  |";
+  stream&lt;&lt;setw(17)&lt;&lt;o1.square&lt;&lt;"  |"; endl;
+  linebuild();
+ return stream;
+ }
+
+istream & operator&gt;&gt;(istream &stream, church &o1) {
+ cout&lt;&lt;"Название, Школа, Количество монахов, Площадь земли: \n";
+ stream&gt;&gt;o1.name;
+ stream&gt;&gt;o1.school;
+ stream&gt;&gt;o1.count;
+ stream&gt;&gt;o1.square;
+ return stream;
+}
+
+int isvalid(int a, int b){
+  if (((a&gt;N-1) || (a&lt;0)) || ((b&gt;N-1) ||(b&lt;0)))
+   {
+    cout&lt;&lt;"Ошибка! Экземпляра с таким индексом не существует.\n";
+    getch();
+    return -1;
+   }
+  else if (a==b)
+   {
+    cout&lt;&lt;"Ошибка! Экземпляр не может быть записан сам в себя.\n";
+    getch();
+    return -2;
+   }
+ return 0;
+}
+
+church church::operator + (church &o1) {
+	church tr;
+	int i,j;
+ delete[] tr.name;
+ delete[] tr.school;
+ tr.name=new char [strlen(name)+strlen(o1.name)+2]; 
+ strcpy(tr.name,name);
+ strcat(tr.name, o1.name);
+ tr.school=new char [strlen(school)+strlen(o1.school)+2]; 
+ strcpy(tr.school,school);
+ strcat(tr.school, o1.school);
+ tr.count=count+o1.count;
+ tr.square=square+o1.square;
+ return tr;
+}
+
+int church::operator == (church &o1) {
+ if (count != o1.count) {cout &lt;&lt; "Данные экземпляры класса не равны."; getch();}
+ else if (ceil(square)!=ceil(o1.square)) {cout &lt;&lt; "Данные экземпляры класса не равны."; getch();}
+ else if (strcmp(name,o1.name) != 0) {cout &lt;&lt; "Данные экземпляры класса не равны."; getch();}
+ else if (strcmp(school,o1.school) != 0) {cout &lt;&lt; "Данные экземпляры класса не равны."; getch();}
+ else cout&lt;&lt;"Экземпляры класса равны."; getch();
+ return 0;
+}
+
+church church::operator = (church &o1) {
+ delete [] name;
+ delete [] school;
+ name = new char [strlen(o1.name)+2];
+  if (!name) {
+   cout&lt;&lt;"Ошибка! Память не выделена.";
+   exit(1);
+  }
+ strcpy(name,o1.name);
+ school = new char [strlen(o1.school)+2];
+  if (!school) {
+   cout&lt;&lt;"Ошибка! Память не выделена.";
+   exit(1);
+  }
+ strcpy(school,o1.school);
+ count = o1.count;
+ square = o1.square;
+ return o1;
+}
+
+church::church(char *a, char *b, unsigned int &c, float &d) {
+ name=new char [strlen(a)+1];
+ strcpy(name,a);
+ school=new char [strlen(b)+1];
+ strcpy(school,b);
+ count=c;
+ square=d;
+}
+
+void church::setall(char *a,char *b,unsigned int c,float d) {
+ strcpy(name,a);
+ strcpy(school,b);
+ count=c;
+ square=d;
+}
+
+void church::showall(void) {
+ cout&lt;&lt;name&lt;&lt;" ";
+ cout&lt;&lt;school&lt;&lt;" ";
+ cout&lt;&lt;count&lt;&lt;" ";
+ cout&lt;&lt;square&lt;&lt;" ";
+}
+
+void church::getall( char * a, char *b, unsigned int &c, float &d)
+{
+ delete[] a;
+ delete[] b;
+ a=new char [strlen(name)+1];
+ b=new char [strlen(school)+1];
+ strcpy(a,name);
+ strcpy(b,school);
+ c=count;
+ d=square;
+ cout&lt;&lt;a&lt;&lt;" ";
+ cout&lt;&lt;b&lt;&lt;" ";
+ cout&lt;&lt;c&lt;&lt;" ";
+ cout&lt;&lt;d&lt;&lt;" ";
+ cout&lt;&lt;"\n";
+}
+
+void shapka(void)
+{
+ cout&lt;&lt;"_______________________________________________________________\n";
+ cout&lt;&lt;"|         Буддистские монастыри Японии периода Нара           |\n";
+ cout&lt;&lt;"|-------------------------------------------------------------|\n";
+ cout&lt;&lt;"|  Название  | Школа | Количество монахов | Площадь земли(га) |\n";
+ cout&lt;&lt;"|-------------------------------------------------------------|\n";
+ }
+
+void linebuild(void) {
+ cout&lt;&lt;"\n|-------------------------------------------------------------|\n";
+}
+
+int main(void) {
+	char *n;
+	char *t;
+	unsigned int s;
+	float h;
+	short i,k;
+	unsigned int s1;
+	short q,q1;
+
+	church obj[N]={church("Тодайдзи","Т",220,368.8),
+		       church("Якусидзи","С",50,54.7),
+		       church("Дайандзи","Д",10,12.2)};
+ clrscr();
+ cout.precision(2);
+ cout&lt;&lt;"Название, Школа, Количество монахов, Площадь земли: \n";
+ for (i=0; i&lt;N; i++) {
+  obj[i].showall();
+  cout&lt;&lt;"\n";
+  }
+
+ cout&lt;&lt;"\nПерегрузка оператора присваивания '='.\n";
+ cout&lt;&lt;"Введите номера экземпляров класса: заменяемый и заменяющий&gt;\n";
+ cin&gt;&gt;q;
+ cin&gt;&gt;q1;
+ if (isvalid(q, q1)!=0) exit(-1);
+ obj[q] = obj[q1];  
+
+  cout&lt;&lt;"Название, Школа, Количество монахов, Площадь земли: \n";
+  for(i=0; i&lt;N; i++) {
+   obj[i].showall();
+   cout&lt;&lt;"\n";
+  }
+
+ cout&lt;&lt;"\nПерегрузка оператора соответствия '=='.\n";
+ cout&lt;&lt;"Введите номера экземпляров класса, которые надо сравнить&gt;\n";
+ cin&gt;&gt;q;
+ cin&gt;&gt;q1;
+ if (isvalid(q, q1)!=0) exit(-1);
+ obj[q] == obj[q1];  
+
+ cout&lt;&lt;"\nПерегрузка оператора суммы '+'.\n";
+ cout&lt;&lt;"Введите номера экземпляров класса, которые надо сложить&gt;\n";
+ cin&gt;&gt;q;
+ cin&gt;&gt;q1;
+ church temp;
+ if (isvalid(q, q1)!=0) exit(-1);
+ temp=obj[q]+obj[q1];  
+   cout&lt;&lt;"Наименование, Тип, Посевная площадь, Урожайность: ";
+   temp.getall(n,t,s,h);
+
+ cout&lt;&lt;"\nПерегрузка оператора потокового ввода '&gt;&gt;'.";
+ cout&lt;&lt;"\nВведите номер экземпляра класса: ";
+ cin&gt;&gt;q;
+ if ((q&gt;N-1)||(q&lt;0)) {cout&lt;&lt;"Ошибка! Экземпляра с таким индексом не существует."; getch(); exit(-1);}
+ cin&gt;&gt;obj[q]; 
+
+ cout&lt;&lt;"\nПерегрузка оператора потокового вывода '&lt;&lt;'.";
+ cout&lt;&lt;"\nВведите номер экземпляра класса: ";
+ cin&gt;&gt;q;
+ if ((q&gt;N-1)||(q&lt;0)) {cout&lt;&lt;"Ошибка! Экземпляра с таким индексом не существует."; getch(); exit(-1);}
+ cout&lt;&lt;obj[q]; 
+
+ getch();
+ return 0;
+}
+</pre>
+
+
+
+<hr>
+<p>
+<table cellpadding=10>
+<tr><td><a href=lab1.html >Назад</a></td><td><a href=index.html>Оглавление</a></td><td><a href=lab3.html>Вперед</a></td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+</p>
+</body>
+</html>

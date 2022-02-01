@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Transitional//EN">
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <meta name="Author" content="Oleg G. Starusev">
+   <meta name="Generator" content="Far Editor">
+   <meta name="Description" content="C++">
+   <meta name="Owner" content="derev@insart.kharkov.ua">
+   <meta name="Keywords" content="программирование, C">
+
+<title>Основы программирования. Лабораторные работы </title>
+<!--                                                                   -->
+<!-- (C) Oleg G. Starusev -->
+<!-- (C) НТУ "ХПИ". Каф.Информатики и интеллектуальной собственности, 2002. -->
+
+</head>
+
+<body background=../../iip_1.jpg>
+<p>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=index.html>Оглавление</a></td><td><a href=lab2.html>Вперед</a></td></tr>
+</table>
+</p>
+<hr>
+
+
+<H2 align=center>Лабораторная работа ╧1.<BR>Простые классы. Доступ к 
+элементам класса</H2>
+<H3 align=center>1. Цель работы</H3>
+<P>Целью лабораторной работы является получение практических навыков при 
+использовании простых классов в языке С++</P>
+
+<H3 align=center>2. Темы для предварительного изучения</H3>
+<P>
+<UL>
+  <LI>Введение в классы 
+  <LI>Структура класса и функции-аксессоры 
+  </LI>
+</UL>
+<P></P>
+
+<H3 align=center>3. Варианты индивидуальных заданий</H3>Варианты индивидуальных 
+заданий взять из <a href=../lab/l02.html>лабораторной работы N2</a> по языку С. 
+
+<H3 align=center>4. Задание к выполнению</H3>
+<P>
+<UL>
+  <LI>Необходимо разработать программу, реализующую простой класс на основе заданной структуры данных. 
+  <LI>Кроме того, необходимо разработать набор функций-аксессоров вида (get, set и show).  
+  <LI>Функция main должна иллюстрировать использование разработанного класса.
+  </LI>
+</UL>
+</P>
+
+<H3 align=center>5. Пример решения задачи (вариант 30).</H3>
+
+<h4 align=center>5.1. Разработка алгоритма решения.</h4>
+<p>
+ Алгоритм программы линейный и его программная реализация не представляется затруднительной.
+</p>
+
+<h4 align=center>5.2. Описание структуры класса.</h4>
+<h4 >5.2.1. Описание полей класса.</h4>
+
+<p>
+Начн╦м  разработку класса с выбора типа данных для его полей. В соответствии с заданием наш класс должен иметь следующие поля:<br>
+<UL>
+	<LI><i>Название. </i>
+	<LI><i>Школа. </i>
+	<LI><i>Количество монахов. </i>
+	<LI><i>Площадь земли. </i>
+</LI></UL>
+
+<UL>
+	<LI><i>Название. </i>Тип этого поля необходимо определить как <i><b>char * </b></i>, так как это позволит  размещать строки различной длины, не обращая внимания на возможность выхода за границы массива  <i><b>char [... ]</b></i>.
+	<LI><i>Школа </i>. Данное поле будет хранить всего лишь один символ, поэтому его тип мы определим как <i><b>char * </b></i>. 	<LI><i>Количество монахов. </i> Для хранения данных  данного поля  достаточно типа <i><b> int</b></i> и так эти данные, не 			могут принимать отрицательные значения, то для исключения ошибок тип 	определим как <i><b>unsigned int</b></i>.
+	<LI><i>Площадь земли. </i>Тип данного поля определим однозначно -  <i><b>float</b></i>.</i>
+	</LI>
+</UL>
+			Итак, таким образом, мы имеем класс с полями:<br>
+class church {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char *name;&nbsp;&nbsp;&nbsp;//Название<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char school;&nbsp;&nbsp;&nbsp;//Школа<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned int count;&nbsp;&nbsp;&nbsp;//Количество монахов<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float square;&nbsp;&nbsp;&nbsp;//Площадь земли<br>
+.<br>
+.<br>
+.<br>
+}<br>
+<br>
+</p>
+<h4 >5.2.2. Функции-аксессоры.</h4>
+<p>
+ В соответствии с условиями задания наш класс должен иметь три функции-аксессора:
+<UL>
+	<LI><i><b>set() </b></i>
+	<LI><i><b>get() </b></i>
+	<LI><i><b>show() </b></i>
+</LI></UL>
+Начн╦м с функции <i><b>set() </b></i>. Задача этой функции - считать данные, вводимые пользователем с клавиатуры, и записать их в поля класса. Т.е для работы с функцией необходимо определить ряд переменных, типы которых соответствуют типам полей класса. Определим эти переменные:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char *n;&nbsp;&nbsp;&nbsp;//Название<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char t;&nbsp;&nbsp;&nbsp;//Школа<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned int s;&nbsp;&nbsp;&nbsp;//Количество монахов<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float h;&nbsp;&nbsp;&nbsp;//Площадь земли<br>
+<br>
+Присваивание значений полям класса производится как обычно с помощью оператора равенства <b>=</b>. Т.е форма записи будет выглядеть следующим образом:&nbsp;&nbsp; <b><i>поле_класса = определ╦нная_переменная</b></i>.
+При присваивании символьных полей необходимо воспользоваться функцией <b><i>strcpy()</b></i>, для чего не забыть в список используемых файлов библиотек подключить файл <b><i> &lt;string.h&gt;</b></i><br><br>
+
+Далее приступим к функции <i><b>get() </b></i>. Она отвечает за считывание значений из полей класса. Для записи этих значений нам опять подойдут переменные, определ╦нные выше. Работа функции <i><b>get() </b></i>  полностью аналогична работе функции <i><b>set() </b></i> за исключением того, что в роли при╦мника значений выступают переменные, а в роли передатчика - поля класса. Т.е форма записи будет выглядеть следующим образом:&nbsp;&nbsp; <b><i>определ╦нная_переменная= поле_класса </b></i>.<br><br> Необходимо обратить внимание на то, что для корректной работы с символьным полем требуется освободить память, занимаемую переменной, а затем выделить память под строку размером с длину строки, хранящейся в символьном поле класса. Это позволит добиться корректного отображения строк на экране и их правильного сохранения в переменной.
+Например:<br><br>
+
+ <b><i>delete[] a; </b></i>// освобождаем память, занимаемую переменной а<br>
+ <b><i>a=new char [strlen(name)+1];</b></i>// выделяем память под строку<br><br>
+
+Третья функция-аксессор <i><b>show() </b></i> производит вывод на экран значений полей класса и е╦ реализация не составляет особого труда. <br>
+</p>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Полный текст программы приведен ниже.
+<hr>
+<p align="Center"><h4 align="Center">
+Лабораторная работа ╧1<br>
+Классы. Функции доступа. <br>
+Вариант ╧30               	        	  	<br>
+Пример выполнения                <br>
+</h4></p>
+<hr>
+<pre>
+
+#include &lt;iostream.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;iomanip.h&gt;
+#define N 3
+
+class church {
+ char *name;
+ char school;
+ unsigned int count;
+ float square;
+public:
+ void set(char *a,char b,unsigned int c, float d);
+ void get(char *a, char &b, unsigned int &c, float &d);
+ void show(void);
+};
+
+void church::set(char *a,char b,unsigned int c,float d) {
+ strcpy(name,a);
+ school=b;
+ count=c;
+ square=d;
+}
+
+void church::get( char * a, char &b, unsigned int &c, float &d)
+{
+ delete[] a;
+ a=new char [strlen(name)+1];
+ strcpy(a,name);
+ b=school;
+ c=count;
+ d=square;
+}
+
+void church::show(void) {
+ cout&lt;&lt;name&lt;&lt;" ";
+ cout&lt;&lt;school&lt;&lt;" ";
+ cout&lt;&lt;count&lt;&lt;" ";
+ cout&lt;&lt;square&lt;&lt;" ";
+}
+
+
+int main(void) {
+  char *n;
+  char t;
+  unsigned int s;
+  float h;
+  short i;
+
+ church obj[N];
+ clrscr();
+ cout&lt;&lt;"Работа функции SET!\n";
+ for (i=0; i&lt;N; i++)
+ {           
+   cout&lt;&lt;"Название, Школа, Количество монахов, Площадь земли: ";
+   cin&gt;&gt;n;
+   cin&gt;&gt;t;
+   cin&gt;&gt;s;
+   cin&gt;&gt;h;
+   obj[i].set(n,t,s,h);
+ }
+ cout&lt;&lt;"Работа функции SHOW!\n";
+ cout&lt;&lt;"Название, Школа, Количество монахов, Площадь земли: \n";
+ for (i=0; i&lt;N; i++)
+ {
+   obj[i].show();
+   cout<<"\n";
+  }
+ cout&lt;&lt;"Работа функции GET и SHOW!\n";
+ cout&lt;&lt;"Название, Школа, Количество монахов, Площадь земли: \n";
+ for(i=0; i&lt;N; i++)
+ {
+   obj[i].get(n,t,s,h);
+   obj[i].show();
+   cout&lt;&lt;"\n";
+  }
+getch();
+delete[] n;
+return 0;
+}
+</pre>
+
+<hr>
+<p>
+<table cellpadding=10>
+<tr><td><a href=index.html>Оглавление</a></td><td><a href=lab2.html>Вперед</a></td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+</p>
+</body>
+</html>

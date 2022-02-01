@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CarInRepair.cpp" />
     <ClCompile Include="ЛР 6.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CarInRepair.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

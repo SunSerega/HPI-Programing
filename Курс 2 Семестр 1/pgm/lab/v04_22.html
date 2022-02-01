@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Transitional//EN">
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <title>Вариант 22</title>
+   <!-- (C) Owner: Alexander S. Derevjanko -->
+   <!-- (C) ХГПУ. Каф.Информатики и интеллектуальной собственности, 2000. -->
+</head>
+
+<body background=../../iip_1.jpg>
+<p align="left"><b>Вариант ╧22</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Дескриптор семафора, который защищает пул ресурсов, имеет формат:
+<p><table border align=center>
+<tr><td><b>╧ разряда</b></td>
+<td>15</td>
+<td>14</td>
+<td>13</td>
+<td>12</td>
+<td>11</td>
+<td>10</td>
+<td>09</td>
+<td>08</td>
+<td>07</td>
+<td>06</td>
+<td>05</td>
+<td>04</td>
+<td>03</td>
+<td>02</td>
+<td>01</td>
+<td>00</td></tr>
+<tr><td><b>Значение</b></td>
+<TD>N</TD>
+<TD>N</TD>
+<TD>N</TD>
+<TD>M</TD>
+<TD>M</TD>
+<TD>M</TD>
+<td>0</td>
+<TD>L</TD>
+<TD>W</TD>
+<TD>W</TD>
+<TD>W</TD>
+<TD>W</TD>
+<TD>W</TD>
+<TD>W</TD>
+<TD>W</TD>
+<TD>W</TD>
+</tr>
+</table>
+
+<p>где:
+
+<table>
+<tr><td>N..N -</td>
+<td>текущее количество свободных единиц ресурса</td></tr>
+
+<tr><td>M..M -</td>
+<td>общее количество единиц ресурса</td></tr>
+
+<tr><td>L -</td>
+<td>признак блокирования/разблокирования семафора (1/0) </td></tr>
+
+<tr><td>W..W -</td>
+<td>количество процессов, которые ожидают доступа к ресурсу</td></tr>
+</table>
+</body>
+</html>

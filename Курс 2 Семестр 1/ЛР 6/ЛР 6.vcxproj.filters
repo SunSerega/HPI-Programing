@@ -18,5 +18,13 @@
     <ClCompile Include="ЛР 6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CarInRepair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CarInRepair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

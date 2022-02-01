@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DB.cpp" />
+    <ClCompile Include="CultureInfo.cpp" />
     <ClCompile Include="ЛР 4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DB.h" />
+    <ClInclude Include="CultureInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,6 @@
+.vs
 *.pdb
 *.exe
-.vs
+*.vcxproj.user
 Debug
+Release

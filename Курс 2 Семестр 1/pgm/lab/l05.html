@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Transitional//EN">
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <meta name="Author" content="Alexander S. Derevjanko">
+   <meta name="Generator" content="Far Editor">
+   <meta name="Description" content="Data structures">
+   <meta name="Owner" content="derev@insart.kharkov.ua">
+   <meta name="Keywords" content="программирование, C">
+
+<title>Основы программирования. Лабораторные работы </title>
+<!--                                                                   -->
+<!-- (C) Owner: Alexander S. Derevjanko -->
+<!-- (C) ХГПУ. Каф.Информатики и интеллектуальной собственности, 2000. -->
+
+</head>
+
+<body background=../../iip_1.jpg>
+<p>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=l04.html>Назад</a></td><td><a href=index.html>Оглавление</a></td><td><a href=l06.html>Вперед</a></td></tr>
+</table>
+</p>
+<hr>
+<h2 align=center>Лабораторная работа ╧5</h2>
+
+<h2 align=center>Условный оператор в языке С</h2>
+
+<h3 align=center>1. Цель работы</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Целью лабораторной работы является получение практических навыков в работе с условным оператором и разветвленными алгоритмами в языке C.
+
+<h3 align=center>2. Темы для предварительной проработки </h3>
+<ul>
+<li>логические операции 
+<li>условный оператор
+</ul>
+
+<h3 align=center>3. Задания для выполнения</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Построить программу, которая вводит координаты точки (<b><i>x</i></b>, <b><i>y</i></b>) и определяет, попадает ли точка в заштрихованную область на рисунке, который соответствует Вашему варианту.  Попадание на границу области считать попаданием в область.
+
+<h3 align=center>4. Варианты индивидуальных заданий</h3>
+<p><table align=center>
+<tr><td>&nbsp;<a href=v05_01.html>1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_02.html>2</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_03.html>3</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_04.html>4</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_05.html>5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_06.html>6</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_07.html>7</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_08.html>8</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;<a href=v05_09.html>9</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_10.html>10</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td><a href=v05_11.html>11</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_12.html>12</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_13.html>13</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_14.html>14</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_15.html>15</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_16.html>16</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_17.html>17</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_18.html>18</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_19.html>19</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_20.html>20</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td><a href=v05_21.html>21</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_22.html>22</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_23.html>23</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_24.html>24</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_25.html>25</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_26.html>26</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_27.html>27</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_28.html>28</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_29.html>29</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a href=v05_30.html>30</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+</p>
+<p></p>
+
+
+<h3 align=center>5. Пример решения задачи (вариант 30)</h3>
+
+<h4 align=center>5.1. Разработка алгоритма решения.</h4>
+<table>
+<tr><td>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Первым шагом алгоритма должен быть ввод координат точки: <b><i>x</i></b> и <b><i>y</i></b>. Для большего удобства при анализе результатов можно вывести введенные значения на экран.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Исследование изображения на рисунке-задании дает нам основание утверждать, что целевая область образуется пересечением:  прямой с коэффициентом -1 и смещением +1 и окружности с центром в начале координат и радиусом 1, как показано на рисунке справа</td>
+<td>
+<table border><tr><td>
+<img src=l05_e032.gif>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Уравнение этой прямой:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>y=-x+1</i></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Уравнение окружности:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>x2+y2=1</i></b>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для проверки попадания точки в заданную область нужно проверить условия того, что:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1). Точка лежит выше прямой или на ней, т.е.:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>y&gt;=-x+1</i></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2). Точка лежит внутри окружности или на ней, т.е.:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>x2+y2&lt;=1</i></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Точка лежит в области, если выполняются оба условия, если же не выполняется хотя бы одно из них, точка лежит вне области. Следовательно, эти условия должны быть объединены логической операцией "И".
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Схема алгоритма приведена на рисунке ниже.
+<p>
+<table align=center border><tr><td>
+<img src=l05_e033.gif>
+</td></tr>
+</table>
+
+
+<h4 align=center>5.2. Определение переменных программы</h4>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для реализации алгоритма нам будут нужны только переменные для хранения значений координат <b><i>x</i></b> и <b><i>y</i></b>. В условиях задания не приведены требования к точности вычислений, рисунок представлен с довольно невысокой точностью, поэтому для этих переменных было бы достаточно типа <b><i>float</i></b>. Но в соответствии с общим стилем программирования на C выберем для них тип <b><i>double</i></b>.
+
+<h4 align=center>5.3. Разработка текста программы</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Текст программы начинается с включения фала:
+<pre>
+    #include &lt;stdio.h&gt;
+</pre>
+т.к. нам обязательно понадобятся функции стандартного ввода-вывода, которые описаны в этом файле.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Далее идет заголовок и открытие главной функции:
+<pre>
+    int main(void) {
+</pre>
+и объявление переменных, определенных в пункте 5.2.
+<pre>
+    double x, y; 
+</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для каждой координаты выводится приглашение на ее ввод и
+вводится ее значение:
+<pre>
+    printf("Введите координату x &gt;");
+    scanf("%lf",&x);
+    printf("Введите координату y &gt;");
+    scanf("%lf",&y);
+</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Введенные значения координат выводятся на экран:
+<pre>
+    printf("x=%6.3lf;  y=%6.3lf\n",x,y);
+</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Далее идет проверка условий попадания точки в область. Оба условия проверяются одним выражением. Поскольку точка попадает в область, если выполняются оба условия вместе, условия в выражении соединены операцией "логическое И":
+<pre>
+    if ( (y&gt;=1-x)&& (x*x+y*y&lt;=1) )
+</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Если значение логического выражения в условном операторе истинно, то выводится сообщение про попадание:
+<pre>
+    printf("Точка попадает в область\n");
+</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;В противном случае выводится сообщение про попадание:
+<pre>
+    else printf("Точка не попадает в область\n");
+</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Полный текст программы приведен ниже.
+
+<pre>
+/****************************************************/
+/*              Лабораторная работа ╧5              */
+/*                 Условный оператор                */
+/*         Пример выполнение. Вариант ╧30.          */
+/****************************************************/
+#include &lt;stdio.h&gt;
+int main(void) {
+ double x, y; /* координаты точки */
+  /* ввод координат */
+  printf("Введите координату x &gt;");
+  scanf("%lf",&x);
+  printf("Введите координату y &gt;");
+  scanf("%lf",&y);
+  /* вывод только что введенных значений */
+  printf("x=%6.3lf;  y=%6.3lf\n",x,y);
+  /* проверка условий */
+  if ( (y&gt;=1-x)
+       && (x*x+y*y&lt;=1) )
+     printf("Точка попадает в область\n");
+  else printf("Точка не попадает в область\n");
+  return 0;
+}
+</pre>
+
+<h4 align=center>5.4. Отладка программы</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Самое важное в отладке этой программы - убедиться в том, что программа выдает правильные результаты при разных комбинациях входных данных. Следовательно, необходимо подобрать такие комбинации, которые были бы показательными для разных случаев размещения точки. Мы предлагаем такие комбинации:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1). точка лежит ниже области - (0.4, 0.4);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2). точка лежит на нижней границе области - (0.5, 0.5);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3). точка лежит внутри области - (0.7, 0.6);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4). точка лежит на верхней границе области - (0.707, 0.707);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5). точка лежит выше области - (0.8, 0.8);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6). точка лежит на правом краю области - (1.0, 0.0);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7). точка лежит на левом краю области - (0.0, 1.0);
+
+<h4 align=center>5.5. Результаты работы программы</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ниже приведены результаты работы программы для входных данных по п.5.4:
+
+<pre>
+x=0.400;  y=0.400
+Точка не попадает в область
+
+x= 0.500;  y= 0.500
+Точка попадает в область
+
+x= 0.700;  y= 0.600
+Точка попадает в область
+
+x= 0.707;  y= 0.707
+Точка попадает в область
+
+x= 0.800;  y= 0.800
+Точка не попадает в область
+
+x= 0.100;  y= 0.000
+Точка попадает в область
+
+x= 0.000;  y= 1.000
+Точка попадает в область
+</pre>
+
+<h4 align=center>5.6. Выводы</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;При выполнении лабораторной работы изучены вопросы:
+<ul>
+<li>логические выражения в языке C
+<li>условный оператор языка C
+</ul>
+<p><hr>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=l04.html>Назад</a></td><td><a href=index.html>Оглавление</a></td><td><a href=l06.html>Вперед</a></td></tr>
+</table>
+</p>
+<hr>
+</body>
+</html>
+

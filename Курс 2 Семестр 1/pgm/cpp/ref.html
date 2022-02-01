@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Transitional//EN">
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <meta name="Author" content="Alexander S. Derevjanko">
+   <meta name="Generator" content="Far Editor">
+   <meta name="Description" content="Data structures">
+   <meta name="Owner" content="derev@insart.kharkov.ua">
+   <meta name="Keywords" content="программирование, язык C">
+
+<TITLE> Страустрап. Справочное руководство по C++. </TITLE>
+<!--                                                                   -->
+<!-- (C) Source: http://www.citforum.ru  -->
+<!-- (C) Owner: Alexander S. Derevjanko (web-design only)-->
+<!-- (C) ХГПУ. Каф.Информатики и интеллектуальной собственности, 2000. -->
+
+</head>
+
+<body background=../../iip_1.jpg>
+<p>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=index.html>Оглавление</a></td><td><a href=ref1_7.html>Вперед</a></td></tr>
+</table>
+</p>
+<hr><p>
+
+<h2> Справочное руководство по С++ </h2>
+
+<hr>
+
+<OL>
+
+<a HREF=ref1_7.html#ref1_7.1><LI>  Введение       </a>                                      
+
+<p><a HREF=ref1_7.html#ref1_7.2><LI>   Договоренности о Лексике      </a>                       
+
+<table border=0>
+
+<TR><TD colspan=2>     <a HREF=ref1_7.html#ref1_7.2.1>  2.1 Комментарии       </a>                               
+
+<TR><TD colspan=2>     <a HREF=ref1_7.html#ref1_7.2.2>  2.2 Идентификаторы (имена) </a>                         
+
+<TR><TD colspan=2>     <a HREF=ref1_7.html#ref1_7.2.3>  2.3 Ключевые слова       </a>                            
+
+<TR><TD colspan=2>     <a HREF=ref1_7.html#ref1_7.2.4>  2.4 Константы                      </a>                  
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.2.5>     2.5 Строки                                </a>          
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.2.6  >   2.6 Характеристики аппаратного обеспечения            </a>
+
+</table>
+
+<p><a HREF=ref1_7.html#ref1_7.3><LI>  Запись Синтаксиса                                     </a>
+
+<p><a HREF=ref1_7.html#ref1_7.4><LI>  Имена и Типы                                          </a>
+
+<table border=0>
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.4.1>      4.1 Область видимости                 </a>               
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.4.2>      4.2 Определения                         </a>          
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.4.3>      4.3 Компоновка              </a>                         
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.4.4>      4.4  Классы памяти                </a>                   
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.4.5>     4.5 Основные типы                 </a>                   
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.4.6>      4.6 Производные типы            </a>                     
+
+</table>
+
+<p><a HREF=ref1_7.html#ref1_7.5><LI>   Объекты и lvalue (адреса) </a> 
+
+<p><a HREF=ref1_7.html#ref1_7.6><LI>   Преобразования                        </a>              
+
+<table border=0>
+
+<TR><TD colspan=2>    <a HREF=ref1_7.html#ref1_7.6.1>     6.1 Символы и целые               </a>                   
+
+<TR><TD colspan=2>    <a HREF=ref1_7.html#ref1_7.6.2>    6.2 Float и double                      </a>             
+
+<TR><TD colspan=2>    <a HREF=ref1_7.html#ref1_7.6.3>    6.3 Плавающие и целые           </a>                     
+
+<TR><TD colspan=2>    <a HREF=ref1_7.html#ref1_7.6.4>    6.4 Указатели и целые            </a>                    
+
+<TR><TD colspan=2>    <a HREF=ref1_7.html#ref1_7.6.5>    6.5 Unsigned                               </a>          
+
+<TR><TD colspan=2><a HREF=ref1_7.html#ref1_7.6.6>     6.6 Арифметические преобразования </a>                   
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.6.7>     6.7 Преобразования указателей   </a>                   
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.6.8>     6.8 Преобразования ссылок       </a>                     
+
+</table>
+
+<p><a HREF=ref1_7.html#ref1_7.7><LI>   Выражения                                             </a>
+
+<table border=0>
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.1>      7.1 Основные выражения            </a>             
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.2>      7.2 Унарные операции             </a>                    
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.7.3>     7.3 Мультипликативные операции  </a>                     
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.7.4>     7.4 Аддитивные операции    </a>                          
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.7.5>     7.5 Операции сдвига                </a>                  
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.6>      7.6 Операции отношения       </a>                        
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.7>      7.7 Операции равенства          </a>                     
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.8>      7.8 Операция побитовое И     </a>                        
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.7.9>     7.9 Операция побитовое исключающее ИЛИ               </a>
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.7.10>     7.10 Операция побитовое  включающее ИЛИ              </a>
+
+<TR><TD colspan=2> <a HREF=ref1_7.html#ref1_7.7.11> 7.11 Операция логическое И         </a>           
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.12>     7.12 Операция логическое ИЛИ </a>                        
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.13>     7.13 Условная операция           </a>                    
+
+<TR><TD colspan=2>   <a HREF=ref1_7.html#ref1_7.7.14>     7.14 Операции присваивания   </a>                        
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.15>      7.15 Операция запятая              </a>                  
+
+<TR><TD colspan=2>  <a HREF=ref1_7.html#ref1_7.7.16>      7.16 Перегруженные операции </a>                         
+
+</table>
+
+<p><a HREF=ref8.html#ref8><LI> Описания    </a>                                         
+
+<table border=0>
+
+<TR><TD colspan=2> <a HREF=ref8.html#ref8.1>     8.1 Спецификаторы класса памяти </a>                     
+
+<TR><TD colspan=2> <a HREF=ref8.html#ref8.2>    8.2 Спецификаторы Типа                  </a>             
+
+<TR><TD colspan=2> <a HREF=ref8.html#ref8.3>     8.3 Описатели                                   </a>    
+
+<TR><TD colspan=2> <a HREF=ref8.html#ref8.4>     8.4 Смысл описателей                      </a>           
+
+<TR><TD colspan=2>   <a HREF=ref8.html#ref8.5>     8.5 Описания классов                    </a>             
+
+<TR><TD colspan=2> <a HREf=ref8.html#ref8.6>       8.6 Инициализация                          </a>         
+
+<TR><TD colspan=2>  <a HREF=ref8.html#ref8.7>      8.7 Имена типов                               </a>       
+
+<TR><TD colspan=2>   <a HREF=ref8.html#ref8.8>     8.8 Определение типа typedef          </a>               
+
+<TR><TD colspan=2>  <a HREF=ref8.html#ref8.9>      8.9 Перегруженные имена функций </a>                     
+
+<TR><TD colspan=2>   <a HREF=ref8.html#ref8.10>     8.10 Описание перечисления           </a>               
+
+<TR><TD colspan=2>   <a HREF=ref8.html#ref8.11>     8.11 Описание Asm                            </a>       
+
+</table>
+
+<p><a HREF=ref9_18.html#ref9_18.9>     <LI> Операторы   </a>                                          
+
+<table border=0>
+
+<TR><TD colspan=2>   <a HREF=ref9_18.html#ref9_18.9.1>    9.1 Оператор выражение   </a>                           
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.9.2>  9.2 Составной оператор, или блок </a>                 
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.3>     9.3 Условный оператор       </a>                         
+
+<TR><TD colspan=2>   <a HREF=ref9_18.html#ref9_18.9.4>    9.4 Оператор while               </a>                    
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.5>     9.5 Оператор do                  </a>                   
+
+<TR><TD colspan=2> <a HREF=ref9_18.html#ref9_18.9.6>      9.6 Оператор for                 </a>                    
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.7>     9.7 Оператор switch            </a>                      
+
+<TR><TD colspan=2> <a HREF=ref9_18.html#ref9_18.9.8>      9.8 Оператор break              </a>                     
+
+<TR><TD colspan=2> <a HREF=ref9_18.html#ref9_18.9.9>      9.9 Оператор continue        </a>                        
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.10>     9.10 Оператор return         </a>                       
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.11>     9.11 Оператор goto            </a>                      
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.12>   9.12 Помеченные операторы   </a>                         
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.13>     9.13 Пустой оператор     </a>                            
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.14>     9.14 Оператор delete      </a>                           
+
+<TR><TD colspan=2>  <a HREF=ref9_18.html#ref9_18.9.15>     9.15 Оператор asm         </a>                          
+
+</table>
+
+<p><a HREF=ref9_18.html#ref9_18.10><LI> Внешние Определения  </a>                               
+
+<table border=0>
+
+<TR><TD colspan=2> <a HREF=ref9_18.html#ref9_18.10.1>10.1  Определения функций         </a>                   
+
+<TR><TD colspan=2> <a HREF=ref9_18.html#ref9_18.10.2>10.2 Определения внешних данных </a>                     
+
+</table>
+
+<p><a HREF=ref9_18.html#ref9_18.11><LI> Правила Области Видимости     </a>                      
+
+<p><a HREF=ref9_18.html#ref9_18.12><LI> Командные Строки Компилятора     </a>                   
+
+<table border=0>
+
+<TR><TD colspan=2> <a HREF=ref9_18.html#ref9_18.12.1>   12.1 Замена идентификаторов</a>                   
+
+<TR><TD colspan=2> <a HREF=ref9_18.html#ref9_18.12.2>      12.2 Включение файлов   </a>                            
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.12.3>      12.3 Условная компиляция  </a>                           
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.12.4>       12.4 Управление строкой    </a>                          
+
+</table>
+
+<p><a HREF=ref9_18.html#ref9_18.13><LI> Неявные Описания                                </a>     
+
+<p><a HREF=ref9_18.html#ref9_18.14><LI> Обзор Типов                                      </a>    
+
+<table border=0>
+
+<TR><TD colspan=2>   <a HREF=ref9_18.html#ref9_18.14.1>    14.1 Классы                          </a>                
+
+<TR><TD colspan=2>   <a HREF=ref9_18.html#ref9_18.14.2>    14.2 Функции                    </a>                    
+
+<TR><TD colspan=2>   <a HREF=ref9_18.html#ref9_18.14.3>    14.3 Массивы, указатели и индексирование             </a>
+
+<TR><TD colspan=2>   <a HREF=ref9_18.html#ref9_18.14.4>    14.4 Явные преобразования указателей                </a>
+
+</table>
+
+<p><a HREF=ref9_18.html#ref9_18.15><LI> Константные Выражения                               </a>
+
+<p><a HREF=ref9_18.html#ref9_18.16><LI> Соображения Мобильности                            </a>  
+
+<p><a HREF=ref9_18.html#ref9_18.17><LI> Свободная Память                                     </a>
+
+<p><a HREF=ref9_18.html#ref9_18.18><LI> Краткое Изложение Синтаксиса                      </a>   
+
+ <table border=0>
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.18.1>       18.1 Выражения                     </a>              
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.18.2>       18.2 Описания                     </a>                   
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.18.3>       18.3 Операторы                  </a>                     
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.18.4>      18.4 Внешние определения   </a>                          
+
+<TR><TD colspan=2><a HREF=ref9_18.html#ref9_18.18.5>      18.5 Препроцессор                 </a>                   
+
+</table>
+
+<p><a HREF=ref9_18.html#ref9_18.19><li> Отличия от "старого C"                        </a>       
+
+<table border=0>
+
+<TR><TD colspan=2>   <a HREF=ref9_18.html#ref9_18.19.1>    19.1 Расширения   </a>                                   
+
+</table>
+
+</ol>
+
+<p><hr>
+<table cellpadding=10>
+<tr><td><a href=../../index.html>Каталог</a></td><td><a href=../index.html>Индекс раздела</a></td><td></tr>
+</table>
+<table cellpadding=10>
+<tr><td><a href=index.html>Оглавление</a></td><td><a href=ref1_7.html>Вперед</a></td></tr>
+</table>
+</p>
+<hr>
+</body>
+</html>
