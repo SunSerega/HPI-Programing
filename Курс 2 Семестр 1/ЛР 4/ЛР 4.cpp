@@ -4,9 +4,9 @@ using namespace std;
 
 int main()
 {
-	DB db{};
+	auto db = new DB{};
 	while (true) {
-		cout << db;
+		cout << *db;
 		cout << "Choose what to do:" << endl;
 		cout << "0: exit" << endl;
 		cout << "1: Add a new row" << endl;
@@ -18,20 +18,21 @@ int main()
 		switch (choise)
 		{
 		case 1:
-			db.AddRow(new CultureInfo{ cin });
+			db->AddRow(new CultureInfo{ cin });
 			break;
 		case 2:
 			cout << "Enter row index" << endl;
 			int ind;
 			cin >> ind;
-			db.DelRow(ind);
+			db->DelRow(ind);
 			break;
 		case 3:
-			db.SortByName();
+			db->SortByName();
 			break;
 		default:
 			cout << "Wrong choise id" << endl;
 		}
 		cout << endl;
 	}
+	delete db;
 }

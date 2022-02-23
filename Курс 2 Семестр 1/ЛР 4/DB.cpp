@@ -20,8 +20,8 @@ void DB::SortByName() {
 	sorted = true;
 	sort(
 		infos.begin(), infos.end(),
-		[](const CultureInfo* p1, const CultureInfo* p2) {
-			return p1->get_name() < p2->get_name();
+		[](auto p1, auto p2) {
+			return *p1 < *p2;
 		}
 	);
 }

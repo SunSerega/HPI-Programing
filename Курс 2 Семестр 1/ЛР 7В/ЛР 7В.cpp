@@ -10,9 +10,7 @@ void GenInp() {
 	ofstream gen{ "inp.bin", file_mode | ios::trunc };
 
 	for (int i = 1; i <= 10; ++i)
-	{
 		gen.write((char*)&i, sizeof(i));
-	}
 
 	gen.close();
 }

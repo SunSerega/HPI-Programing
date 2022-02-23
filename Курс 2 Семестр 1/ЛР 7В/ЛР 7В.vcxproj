@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="ЛР 7В.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="inp.bin" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -3,20 +3,13 @@
 #include <iostream>
 
 class CarInRepair {
-    std::string brand;
+    std::string_view brand;
     double cost;
     int days;
     std::string numberplate;
 
 public:
-    CarInRepair()
-        : brand{}
-        , cost{}
-        , days{}
-        , numberplate{}
-    {}
-
-    CarInRepair(std::string brand, double cost, int days, std::string numberplate)
+    CarInRepair(std::string_view brand, double cost, int days, std::string numberplate)
         : brand{ brand }
         , cost{ cost }
         , days{ days }
@@ -24,6 +17,11 @@ public:
     {}
 
     static void Generate(CarInRepair& data);
+
+    auto& brand_prop() { return brand; }
+    auto& cost_prop() { return cost; }
+    auto& days_prop() { return days; }
+    auto& numberplate_prop() { return numberplate; }
 
     friend bool operator<(const CarInRepair& d1, const CarInRepair& d2);
 

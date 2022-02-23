@@ -13,7 +13,9 @@ public:
 		stream >> *this;
 	}
 
-	const std::string& get_name() const { return name; };
+	friend bool operator<(const CultureInfo& p1, const CultureInfo& p2) {
+		return p1.name < p2.name;
+	}
 
 	friend std::istream& operator>>(std::istream& stream, CultureInfo& p);
 

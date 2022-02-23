@@ -14,30 +14,31 @@ class DynamicArray {
 		this->data = static_cast<TItem*>(operator new[](buf_size * sizeof(TItem)));
 	}
 
+#pragma region count
+
 private:
 	class count_t {
 		DynamicArray& source;
 		count_t(DynamicArray& source) : source{ source } {}
-		count_t(count_t& prev) = delete;
-
 		friend class DynamicArray;
 	public:
 		operator size_t() const { return source.used_size; }
-
 	};
 public:
 	const count_t count{ *this };
+
+#pragma endregion
+
+#pragma region capacity
 
 private:
 	class capacity_t {
 		DynamicArray& source;
 		capacity_t(DynamicArray& source) : source{ source } {}
-		capacity_t(capacity_t& prev) = delete;
-
 		friend class DynamicArray;
 	public:
-		operator size_t() const { return source.buf_size; }
 
+		operator size_t() const { return source.buf_size; }
 		size_t operator=(size_t new_buf_size) const {
 			auto old_data = source.data;
 			auto old_buf_size = source.buf_size;
@@ -54,6 +55,8 @@ private:
 	};
 public:
 	const capacity_t capacity{ *this };
+
+#pragma endregion
 
 public:
 	using iter = TItem*;

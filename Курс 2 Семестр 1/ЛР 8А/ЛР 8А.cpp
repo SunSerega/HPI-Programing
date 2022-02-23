@@ -6,7 +6,6 @@ class Sum {
 	T val;
 
 public:
-	// К-торы
 	Sum() : val{} {};
 	Sum(T val) : val{ val } {};
 
@@ -17,12 +16,10 @@ public:
 		return inp;
 	}
 
-	// operator+
 	friend Sum operator+(const Sum& s1, const Sum& s2) {
 		return { s1.val + s2.val };
 	}
 
-	// Оператор преобразования Sum в T, для вывода внутреннего значения
 	operator T() {
 		return val;
 	}

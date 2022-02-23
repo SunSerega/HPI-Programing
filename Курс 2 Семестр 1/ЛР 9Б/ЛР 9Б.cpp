@@ -60,7 +60,7 @@ public:
 };
 
 template <class T1, class T2>
-ostream& operator<<(ostream& otp, const pair<T1, T2> p) {
+ostream& operator<<(ostream& otp, const pair<T1, T2>& p) {
 	return otp << p.first << ' ' << p.second;
 }
 

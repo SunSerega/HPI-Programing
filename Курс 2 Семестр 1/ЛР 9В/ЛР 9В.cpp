@@ -137,6 +137,4 @@ int main()
 		cout << p << endl;
 	cout << string(30, '=') << endl;
 
-	
-
 }

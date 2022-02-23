@@ -37,7 +37,7 @@ void sort(TRange& range) {
 template <ranges::range TRange,
 	class TPred = decltype([](ranges::range_value_t<TRange>) { return true; }),
 	class TRes = decay_t<ranges::range_value_t<TRange>>
-> auto sum(const TRange& range, TPred pred = {}) {
+> TRes sum(const TRange& range, TPred pred = {}) {
 	TRes res{};
 	for (auto& x : range)
 		if (pred(x))
@@ -59,13 +59,13 @@ int main()
 	}
 
 	{
-		int x[5]{ 5, 4, 3, 2, 1 };
+		int x[]{ 5, 4, 3, 2, 1 };
 		sort(x);
 		assert(("sort: ", std::ranges::equal(x, decltype(x){1,2,3,4,5})));
 	}
 
 	{
-		int x[5]{ -2,-1,0,+1,+2 };
+		int x[]{ -2,-1,0,+1,+2 };
 		assert(("sum1: ", sum(x) == 0));
 		assert(("sum2: ", sum(x, [](auto x) {return x > 0; }) == 3));
 	}

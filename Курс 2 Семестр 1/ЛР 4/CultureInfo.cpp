@@ -11,7 +11,7 @@ istream& operator>>(istream& stream, CultureInfo& info) {
 	cout << "\t2 = bean" << endl;
 	int i;
 	stream >> i;
-	info.type = (CultureType)(i - 1);
+	info.type = CultureType(i - 1);
 	cout << "Enter area in use: ";
 	stream >> info.area_in_use;
 	cout << "Enter efficiency: ";

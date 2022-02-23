@@ -126,8 +126,8 @@ int main()
 	auto v1 = MakeVec(gen);
 	auto v2 = MakeVec(gen);
 
-	cout << v1 << endl;
-	cout << v2 << endl;
+	cout << "v1: " << v1 << endl;
+	cout << "v2: " << v2 << endl;
 
 	cout << "v1<=>v1: " << (v1 <=> v1) << endl;
 	cout << "v1<=>v2: " << (v1 <=> v2) << endl;
